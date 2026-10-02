@@ -2,14 +2,14 @@
   "daily": {
     "enabled": true,
     "format": "YYYY-MM-DD",
-    "folder": "01 Journal/Daily",
-    "template": "Templates/Daily Note.md"
+    "folder": "01 日志/每日",
+    "template": "模板/每日笔记.md"
   },
   "weekly": {
     "enabled": true,
     "format": "gggg-[W]ww",
-    "folder": "01 Journal/Weekly",
-    "template": "Templates/Weekly Note.md"
+    "folder": "01 日志/每周",
+    "template": "模板/每周笔记.md"
   },
   "monthly": {
     "enabled": false,
@@ -20,8 +20,8 @@
   "quarterly": {
     "enabled": true,
     "format": "YYYY-[Q]Q",
-    "folder": "01 Journal/Quarterly",
-    "template": "Templates/Quarterly Note.md"
+    "folder": "01 日志/每季度",
+    "template": "模板/季度笔记.md"
   },
   "yearly": {
     "enabled": false,

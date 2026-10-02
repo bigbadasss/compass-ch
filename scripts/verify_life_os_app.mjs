@@ -12,7 +12,7 @@ const manifestPath = path.join(pluginDir, "manifest.json");
 const communityPath = path.join(root, ".obsidian/community-plugins.json");
 const quickAddPath = path.join(root, ".obsidian/plugins/quickadd/data.json");
 const noticesPath = path.join(root, "THIRD_PARTY_NOTICES.md");
-const setupViewPath = path.join(root, "Meta/views/setup.js");
+const setupViewPath = path.join(root, "系统/视图/setup.js");
 const hotkeysPath = path.join(root, ".obsidian/hotkeys.json");
 
 const results = [];
@@ -54,8 +54,8 @@ check(
 );
 check(
   "canonical Projects folder restored",
-  fs.existsSync(path.join(root, "04 Projects/Projects Board.md")) &&
-    !fs.existsSync(path.join(root, "05 People/04 Projects/Projects Board.md"))
+  fs.existsSync(path.join(root, "04 项目/项目看板.md")) &&
+    !fs.existsSync(path.join(root, "05 人物/04 项目/项目看板.md"))
 );
 check(
   "primary Life OS hotkeys configured",
@@ -83,14 +83,14 @@ const quickAddById = new Map(
   (quickAdd.choices || []).map((choice) => [choice.id, choice])
 );
 const recordChoiceContracts = [
-  ["lifeos-new-project", "Templates/Project.md", "04 Projects"],
-  ["lifeos-new-person", "Templates/Person.md", "05 People"],
-  ["lifeos-new-newsletter", "Templates/Newsletter.md", "06 Writing/Newsletters"],
-  ["lifeos-new-video", "Templates/YouTube Script.md", "06 Writing/YouTube Scripts"],
-  ["lifeos-new-article", "Templates/Article.md", "06 Writing/Articles"],
-  ["lifeos-new-course-lesson", "Templates/Course Lesson.md", "06 Writing/Course Content"],
-  ["lifeos-new-book", "Templates/Book Note.md", "07 Library/Book Notes"],
-  ["lifeos-new-study-note", "Templates/Study Note.md", "09 Reading/Study Notes"],
+  ["lifeos-new-project", "模板/项目.md", "04 项目"],
+  ["lifeos-new-person", "模板/人物.md", "05 人物"],
+  ["lifeos-new-newsletter", "模板/新闻通讯.md", "06 写作/新闻通讯"],
+  ["lifeos-new-video", "模板/视频脚本.md", "06 写作/视频脚本"],
+  ["lifeos-new-article", "模板/文章.md", "06 写作/文章"],
+  ["lifeos-new-course-lesson", "模板/课程课时.md", "06 写作/课程内容"],
+  ["lifeos-new-book", "模板/书籍笔记.md", "07 资料库/书籍笔记"],
+  ["lifeos-new-study-note", "模板/学习笔记.md", "09 阅读/学习笔记"],
 ];
 const invalidRecordChoices = recordChoiceContracts.filter(
   ([id, templatePath, folder]) => {
@@ -322,30 +322,30 @@ try {
   );
 
   const fakeFiles = [
-    new TFile("04 Projects/Example.md"),
-    new TFile("04 Projects/Metadata Pending.md"),
-    new TFile("05 People/Person.md"),
-    new TFile("06 Writing/Articles/Article.md"),
-    new TFile("06 Writing/Articles/Sample.md"),
-    new TFile("07 Library/Task Example.md"),
-    new TFile("08 Tasks/Tasks.md"),
-    new TFile("08 Tasks/Archive.md"),
+    new TFile("04 项目/Example.md"),
+    new TFile("04 项目/Metadata Pending.md"),
+    new TFile("05 人物/Person.md"),
+    new TFile("06 写作/文章/Article.md"),
+    new TFile("06 写作/文章/Sample.md"),
+    new TFile("07 资料库/Task Example.md"),
+    new TFile("08 任务/任务总表.md"),
+    new TFile("08 任务/Archive.md"),
   ];
   const metadata = new Map([
-    ["04 Projects/Example.md", { type: "project", status: "active" }],
-    ["05 People/Person.md", { type: "person" }],
-    ["06 Writing/Articles/Article.md", { type: "article" }],
-    ["06 Writing/Articles/Sample.md", { type: "article", tags: ["example"] }],
-    ["07 Library/Task Example.md", { type: "book" }],
+    ["04 项目/Example.md", { type: "project", status: "active" }],
+    ["05 人物/Person.md", { type: "person" }],
+    ["06 写作/文章/Article.md", { type: "article" }],
+    ["06 写作/文章/Sample.md", { type: "article", tags: ["example"] }],
+    ["07 资料库/Task Example.md", { type: "book" }],
     [
-      "Meta/Compass Config.md",
+      "系统/Compass 配置.md",
       {
         questions: [{ key: "dq_goals", text: "Did I set clear goals?" }],
         habits: ["habit_journal"],
       },
     ],
-    ["01 Journal/Daily/2026-09-09.md", { dq_goals: 8, habit_journal: true }],
-    ["00 Dashboards/Setup.md", { status: "open" }],
+    ["01 日志/每日/2026-09-09.md", { dq_goals: 8, habit_journal: true }],
+    ["00 仪表盘/初始设置.md", { status: "open" }],
   ]);
   const taskItem = (task, line) => ({
     task,
@@ -353,7 +353,7 @@ try {
   });
   const listItems = new Map([
     [
-      "04 Projects/Example.md",
+      "04 项目/Example.md",
       [
         taskItem(" ", 0),
         taskItem("x", 4),
@@ -362,16 +362,16 @@ try {
         taskItem("-", 7),
       ],
     ],
-    ["05 People/Person.md", [taskItem(" ", 0)]],
-    ["06 Writing/Articles/Article.md", [taskItem(" ", 0)]],
-    ["06 Writing/Articles/Sample.md", [taskItem(" ", 0)]],
-    ["07 Library/Task Example.md", [taskItem(" ", 0)]],
-    ["08 Tasks/Tasks.md", [taskItem(" ", 0)]],
-    ["08 Tasks/Archive.md", [taskItem(" ", 0)]],
+    ["05 人物/Person.md", [taskItem(" ", 0)]],
+    ["06 写作/文章/Article.md", [taskItem(" ", 0)]],
+    ["06 写作/文章/Sample.md", [taskItem(" ", 0)]],
+    ["07 资料库/Task Example.md", [taskItem(" ", 0)]],
+    ["08 任务/任务总表.md", [taskItem(" ", 0)]],
+    ["08 任务/Archive.md", [taskItem(" ", 0)]],
   ]);
   const fileContents = new Map([
     [
-      "04 Projects/Example.md",
+      "04 项目/Example.md",
       [
         "- [ ] Ship the Life OS slice 📅 2026-09-09 ⏫",
         "```tasks",
@@ -383,14 +383,14 @@ try {
         "- [-] Cancelled task ❌ 2026-09-08",
       ].join("\n"),
     ],
-    ["05 People/Person.md", "- [ ] Discuss a decision #discuss"],
-    ["06 Writing/Articles/Article.md", "- [ ] Draft the article 🔺"],
-    ["06 Writing/Articles/Sample.md", "- [ ] Demonstration task"],
-    ["07 Library/Task Example.md", "- [ ] Out-of-scope library task"],
-    ["08 Tasks/Tasks.md", "- [ ] Triage the inbox ➕ 2026-09-08"],
-    ["08 Tasks/Archive.md", "- [ ] Out-of-scope task archive"],
+    ["05 人物/Person.md", "- [ ] Discuss a decision #discuss"],
+    ["06 写作/文章/Article.md", "- [ ] Draft the article 🔺"],
+    ["06 写作/文章/Sample.md", "- [ ] Demonstration task"],
+    ["07 资料库/Task Example.md", "- [ ] Out-of-scope library task"],
+    ["08 任务/任务总表.md", "- [ ] Triage the inbox ➕ 2026-09-08"],
+    ["08 任务/Archive.md", "- [ ] Out-of-scope task archive"],
   ]);
-  const metadataUnavailable = new Set(["04 Projects/Metadata Pending.md"]);
+  const metadataUnavailable = new Set(["04 项目/Metadata Pending.md"]);
   const pluginInstances = new Map([
     ["agent-client", { settings: { defaultAgentId: "synthetic-agent", autoAllowPermissions: false } }],
     ["obsidian-local-rest-api", { settings: {} }],
@@ -420,7 +420,7 @@ try {
       on: () => ({ off: () => {} }),
       getMarkdownFiles: () => fakeFiles,
       cachedRead: async (file) => {
-        if (file.path.startsWith("05 People/")) {
+        if (file.path.startsWith("05 人物/")) {
           throw new Error("simulated unreadable note");
         }
         return fileContents.get(file.path) || "";
@@ -529,7 +529,7 @@ try {
     }
     if (screen === "today") {
       todayHasPropertyValues =
-        treeHasText(view.contentEl, "8/10") && treeHasText(view.contentEl, "Done");
+        treeHasText(view.contentEl, "8/10") && treeHasText(view.contentEl, "已完成");
     }
   }
   check("all application screens render", emptyScreens.length === 0, emptyScreens.join(", "));
@@ -545,14 +545,14 @@ try {
   check("Home avoids duplicate system summary", !homeHasSystemSummary);
   check("Home onboarding state renders", homeHasSetupBanner);
   check("Today renders configured property values", todayHasPropertyValues);
-  metadata.set("00 Dashboards/Setup.md", { status: "done" });
+  metadata.set("00 仪表盘/初始设置.md", { status: "done" });
   view.activeScreen = "home";
   view.render();
   check(
     "completed onboarding banner hides",
     !treeHasClass(view.contentEl, "life-os-setup-banner")
   );
-  metadata.set("00 Dashboards/Setup.md", { status: "open" });
+  metadata.set("00 仪表盘/初始设置.md", { status: "open" });
   check(
     "task index degrades per file",
     view.taskSnapshot?.tasks.length === 4 &&
@@ -605,7 +605,7 @@ try {
     "task feed exposes partial index coverage",
     treeHasText(
       view.contentEl,
-      "4 open, 1 unreadable, 1 metadata pending, 1 unresolved status, 1 sample excluded"
+      "4 项未完成, 1 项无法读取, 1 项等待元数据, 1 项状态无法识别, 1 项示例已排除"
     )
   );
   check(
@@ -619,31 +619,31 @@ try {
   view.render();
   check(
     "permission status reports observable policy without enforcement claim",
-    treeHasText(view.contentEl, "Manual prompts") &&
-      treeHasText(view.contentEl, "Client setting is off. This reports policy, not enforcement.") &&
+    treeHasText(view.contentEl, "手动确认") &&
+      treeHasText(view.contentEl, "客户端已关闭自动允许。这里只报告设置，不代表技术强制。") &&
       !treeHasText(view.contentEl, "Required for every write")
   );
   pluginInstances.get("agent-client").settings.autoAllowPermissions = true;
   view.render();
   check(
     "permission status warns when auto-allow is enabled",
-    treeHasText(view.contentEl, "Auto-allow on") &&
-      treeHasText(view.contentEl, "Client may auto-approve requests. This reports policy, not enforcement.")
+    treeHasText(view.contentEl, "已开启自动允许") &&
+      treeHasText(view.contentEl, "客户端可能自动批准请求。这里只报告设置，不代表技术强制。")
   );
   delete pluginInstances.get("agent-client").settings.autoAllowPermissions;
   view.render();
   check(
     "permission status remains unknown when setting is unobservable",
-    treeHasText(view.contentEl, "Unknown") &&
-      treeHasText(view.contentEl, "Permission setting was not observable. No enforcement claim.")
+    treeHasText(view.contentEl, "未知") &&
+      treeHasText(view.contentEl, "无法读取权限设置，因此不对强制执行情况作判断。")
   );
   pluginInstances.get("agent-client").settings.autoAllowPermissions = false;
 
-  metadata.set("Meta/Compass Config.md", {
+  metadata.set("系统/Compass 配置.md", {
     questions: [{ key: "dq_goals", text: "Did I set clear goals?" }],
     habits: ["habit_journal", "habit_exercise", "habit_reading"],
   });
-  metadata.set("01 Journal/Daily/2026-09-09.md", {
+  metadata.set("01 日志/每日/2026-09-09.md", {
     dq_goals: true,
     habit_journal: false,
     habit_reading: "yes",
@@ -653,7 +653,7 @@ try {
     "Today rejects boolean effort scores",
     strictToday.questionRecorded === 0 &&
       strictToday.questions[0]?.state === "invalid" &&
-      strictToday.questions[0]?.display === "Invalid value"
+      strictToday.questions[0]?.display === "数值无效"
   );
   check(
     "Today distinguishes unchecked, missing, and invalid habits",
@@ -662,7 +662,7 @@ try {
       strictToday.habits.map((habit) => habit.state).join(",") ===
         "unchecked,missing,invalid" &&
       strictToday.habits.map((habit) => habit.display).join(",") ===
-        "Unchecked,Not recorded,Invalid value"
+        "未完成,未记录,数值无效"
   );
   const coverage = view.summarizeDailyProperties(
     {
@@ -683,7 +683,7 @@ try {
       coverage.recorded === 3,
     JSON.stringify(coverage)
   );
-  metadata.set("Meta/Compass Config.md", {
+  metadata.set("系统/Compass 配置.md", {
     daily_folder: "/Custom/Daily/",
     weekly_folder: "Custom/Weekly/",
     quarterly_folder: "Custom/Quarterly",
@@ -697,7 +697,7 @@ try {
   view.renderPlanLive(new FakeElement());
   view.renderReviewLive(new FakeElement());
   view.getSystemStats();
-  await view.openPath("04 Projects/Projects Board.md");
+  await view.openPath("04 项目/项目看板.md");
   const configuredFolders = view.getConfiguredFolders();
   check(
     "configured folders normalize without leading or trailing slashes",
@@ -716,21 +716,21 @@ try {
       "Custom/Daily/2026-09-09.md",
       "Custom/Weekly/2026-W37.md",
       "Custom/Quarterly/2026-Q3.md",
-      "Custom/Retreats/2026-Q3 Personal Retreat.md",
-      "Custom/Projects/Projects Board.md",
+      "Custom/Retreats/2026-Q3 季度个人回顾.md",
+      "Custom/Projects/项目看板.md",
     ].every((path) => requestedPaths.includes(path)),
     requestedPaths.filter((path) => path.startsWith("Custom/")).join(", ")
   );
   check(
     "domain records use the configured projects folder",
     view.isDomainRecord(new TFile("Custom/Projects/Project.md")) &&
-      !view.isDomainRecord(new TFile("04 Projects/Project.md"))
+      !view.isDomainRecord(new TFile("04 项目/Project.md"))
   );
-  metadata.set("Meta/Compass Config.md", {
+  metadata.set("系统/Compass 配置.md", {
     questions: [{ key: "dq_goals", text: "Did I set clear goals?" }],
     habits: ["habit_journal"],
   });
-  metadata.set("01 Journal/Daily/2026-09-09.md", {
+  metadata.set("01 日志/每日/2026-09-09.md", {
     dq_goals: 8,
     habit_journal: true,
   });
@@ -747,11 +747,11 @@ try {
   };
   const getLeaf = fakeApp.workspace.getLeaf;
   fakeApp.workspace.getLeaf = () => taskLeaf;
-  await view.openPath("08 Tasks/Tasks.md", 7);
+  await view.openPath("08 任务/任务总表.md", 7);
   fakeApp.workspace.getLeaf = getLeaf;
   check(
     "task navigation targets the indexed source line",
-    taskLeaf.openedFile?.path === "08 Tasks/Tasks.md" &&
+    taskLeaf.openedFile?.path === "08 任务/任务总表.md" &&
       editorCalls[0]?.[0] === "cursor" &&
       editorCalls[0]?.[1]?.line === 6
   );
@@ -769,28 +769,28 @@ try {
   check("view activation state", fakeLeaf.state?.type === "life-os-home", fakeLeaf.state?.type);
   check("direct module activation", view.activeScreen === "today", view.activeScreen);
 
-  fakeFiles.push(new TFile("01 Journal/Daily/2026-09-09.md"), new TFile("01 Journal/Daily/2026-09-08.md"));
-  metadata.set("01 Journal/Daily/2026-09-08.md", { tags: ["example"], dq_goals: 2, habit_journal: false });
+  fakeFiles.push(new TFile("01 日志/每日/2026-09-09.md"), new TFile("01 日志/每日/2026-09-08.md"));
+  metadata.set("01 日志/每日/2026-09-08.md", { tags: ["example"], dq_goals: 2, habit_journal: false });
   const real = view.getAnalytics();
   check("analytics excludes sample scores and preserves missing days", real.average === 8 && real.scored === 1 && real.days.filter((day) => day.score === null).length === 29);
   view.includeExamples = true;
   check("analytics sample inclusion is explicit", view.getAnalytics().average === 5);
-  metadata.set("01 Journal/Daily/2026-09-08.md", { dq_goals: true, habit_journal: false });
+  metadata.set("01 日志/每日/2026-09-08.md", { dq_goals: true, habit_journal: false });
   check("boolean question values are not numeric scores", view.getAnalytics().scored === 1);
   view.includeExamples = false;
   check("record counters exclude templates and build copies",
-    !view.isDomainRecord(new TFile("Templates/Project.md")) &&
-    !view.isDomainRecord(new TFile("build/04 Projects/Project.md")));
+    !view.isDomainRecord(new TFile("模板/项目.md")) &&
+    !view.isDomainRecord(new TFile("build/04 项目/Project.md")));
   view.activeScreen = "home";
   view.render();
   const findText = (element, text) => element.options?.text === text ? element :
     element.children.map((child) => findText(child, text)).find(Boolean);
-  check("Home keeps full analytics in Review", !findText(view.contentEl, "7 days") && !!findText(view.contentEl, "Explore Review"));
+  check("Home keeps full analytics in Review", !findText(view.contentEl, "7 天") && !!findText(view.contentEl, "查看回顾"));
   view.activeScreen = "review";
   view.render();
-  findText(view.contentEl, "7 days").handlers.click();
+  findText(view.contentEl, "7 天").handlers.click();
   check("chart range control changes aggregation window", view.getAnalytics().days.length === 7);
-  findText(view.contentEl, "Include samples").handlers.click();
+  findText(view.contentEl, "包含示例").handlers.click();
   check("sample control changes state", view.includeExamples === true);
   view.analyticsDays = 30;
   view.includeExamples = false;
@@ -799,12 +799,12 @@ try {
     // Generated visual-test artifact uses synthetic fixtures only.
     for (let i = 0; i < 30; i += 1) {
       const date = new Date("2026-09-09T12:00:00Z"); date.setUTCDate(date.getUTCDate() - i);
-      const filePath = `01 Journal/Daily/${date.toISOString().slice(0, 10)}.md`;
+      const filePath = `01 日志/每日/${date.toISOString().slice(0, 10)}.md`;
       if (!fakeFiles.some((file) => file.path === filePath)) fakeFiles.push(new TFile(filePath));
       metadata.set(filePath, { dq_goals: 4 + i % 7, habit_journal: i % 3 !== 0, habit_reading: i % 4 !== 0, habit_exercise: i % 2 === 0 });
     }
-    fakeFiles.push(new TFile("02 Retreats/2026-Q3 Personal Retreat.md"));
-    metadata.set("02 Retreats/2026-Q3 Personal Retreat.md", { wheel_health: 7, wheel_relationships: 8, wheel_growth: 6, wheel_career: 7, wheel_fun: 5, wheel_meaning: 8 });
+    fakeFiles.push(new TFile("02 季度回顾/2026-Q3 季度个人回顾.md"));
+    metadata.set("02 季度回顾/2026-Q3 季度个人回顾.md", { wheel_health: 7, wheel_relationships: 8, wheel_growth: 6, wheel_career: 7, wheel_fun: 5, wheel_meaning: 8 });
     view.activeScreen = "home"; view.render();
     fs.writeFileSync(process.env.LIFE_OS_PREVIEW, `<!doctype html><html><head><meta charset="utf-8"><title>Life OS visual test, synthetic data</title><style>
       :root { --background-primary:#202020; --background-secondary:#292929; --text-normal:#ddd; --text-muted:#aaa; --text-faint:#888; --color-green:#7aa995; --color-red:#df7777; }

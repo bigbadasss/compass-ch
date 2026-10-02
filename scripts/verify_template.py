@@ -13,7 +13,7 @@ if os.path.exists(_local):
     FORBIDDEN += [re.escape(l.strip()) for l in open(_local) if l.strip() and not l.startswith("#")]
 ALLOW_FILES = {"scripts/verify_template.py", "scripts/build_template.py", "scripts/RELEASE.md"}
 SKIP_DIR_PARTS = ("/.obsidian/plugins/",)
-DATE_LINK = re.compile(r"^\d{4}-(\d\d-\d\d|W\d\d|Q\d( Personal Retreat)?)$")
+DATE_LINK = re.compile(r"^\d{4}-(\d\d-\d\d|W\d\d|Q\d( 季度个人回顾)?)$")
 
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else "build/Compass"
@@ -84,7 +84,7 @@ def main():
     ra = load(".obsidian/plugins/obsidian-local-rest-api/data.json"); check("REST API settings are exactly enableInsecureServer:true", ra == {"enableInsecureServer": True}, "Unexpected settings shape" if ra != {"enableInsecureServer": True} else "")
     ac = load(".obsidian/plugins/agent-client/data.json")
     check("agent-client: no sessions, auto-allow off, no absolute command", ac is not None and ac.get("savedSessions") == [] and ac.get("autoAllowPermissions") is False and not any(str((pa or {}).get("command", "")).startswith("/") for pa in (ac.get("presetAgents") or {}).values()))
-    seo = load(".obsidian/plugins/seo/data.json"); check("seo: no scan cache, scan dir set", seo is not None and "cachedGlobalResults" not in seo and "06 Writing" in seo.get("scanDirectories", ""))
+    seo = load(".obsidian/plugins/seo/data.json"); check("seo: no scan cache, scan dir set", seo is not None and "cachedGlobalResults" not in seo and "06 写作" in seo.get("scanDirectories", ""))
     om = load(".obsidian/plugins/omnisearch/data.json"); check("omnisearch: http server off", om is None or (om.get("httpApiEnabled") is False and om.get("DANGER_httpHost") in (None, "")))
     qa = load(".obsidian/plugins/quickadd/data.json"); check("quickadd: no AI keys, online off", qa is not None and qa.get("disableOnlineFeatures") is True and all((p or {}).get("apiKey", "") == "" for p in (qa.get("ai", {}) or {}).get("providers", []) or []))
     cp = load(".obsidian/core-plugins.json"); check("core-plugins: sync off, webviewer on, bases on", cp is not None and cp.get("sync") is False and cp.get("webviewer") is True and cp.get("bases") is True)
@@ -132,33 +132,33 @@ def main():
     if wv.get("markdownPath"): check("webviewer markdownPath exists", exists(wv["markdownPath"]))
     # content asserts
     for rel in files:
-        if rel.endswith(".md") and any(rel.startswith(u) for u in ["01 Journal/", "02 Retreats/", "04 Projects/", "05 People/", "06 Writing/", "07 Library/"]) and not rel.endswith(" Board.md"):
+        if rel.endswith(".md") and any(rel.startswith(u) for u in ["01 日志/", "02 季度回顾/", "04 项目/", "05 人物/", "06 写作/", "07 资料库/"]) and not rel.endswith("看板.md"):
             t = texts.get(rel, ""); fm = re.match(r"^---\n(.*?)\n---", t, re.S)
             check("user-folder note tagged example: %s" % rel, bool(fm) and re.search(r"^\s*-\s*example\s*$", fm.group(1), re.M) is not None)
-    cfg = texts.get("Meta/Compass Config.md", ""); check("config birthdate empty", re.search(r"^birthdate:\s*$", cfg, re.M) is not None)
-    check("Life Theme is template text", "Replace this line with your life theme" in texts.get("03 Planning/Life Theme.md", ""))
-    check("Core Values is template text", "**Value one**" in texts.get("03 Planning/Core Values.md", ""))
-    check("wiki log empty", re.sub(r"^---.*?---\n", "", texts.get("wiki/log.md", ""), flags=re.S).strip().endswith("Newest completed operations appear first."))
-    plan_body = re.sub(r"```.*?```", "", texts.get("09 Reading/Reading Plan.md", ""), flags=re.S)
+    cfg = texts.get("系统/Compass 配置.md", ""); check("config birthdate empty", re.search(r"^birthdate:\s*$", cfg, re.M) is not None)
+    check("人生主题 is template text", "把这一行替换成你的人生主题" in texts.get("03 规划/人生主题.md", ""))
+    check("核心价值观 is template text", "**价值观一**" in texts.get("03 规划/核心价值观.md", ""))
+    check("wiki log empty", re.sub(r"^---.*?---\n", "", texts.get("知识库/日志.md", ""), flags=re.S).strip().endswith("最新完成的操作排在最前面。"))
+    plan_body = re.sub(r"```.*?```", "", texts.get("09 阅读/阅读计划.md", ""), flags=re.S)
     check("reading plan has no tasks", not re.search(r"^- \[ \]", plan_body, re.M))
     for rel, t in texts.items():
-        if rel.startswith("01 Journal/Weekly/"):
+        if rel.startswith("01 日志/每周/"):
             m = re.search(r"^week:\s*(\S+)", t, re.M); check("weekly note week property matches name: %s" % rel, m and m.group(1) == os.path.basename(rel)[:-3])
-    for bad in ["wiki/concepts", "wiki/sources", "wiki/entities", "wiki/questions", ".vault-meta", ".raw", ".mcp.json", ".claude/settings.local.json", ".obsidian/plugins/agent-client/sessions", "Untitled.canvas", "08 Tasks/Untitled.base", "Guide/18 Distribution Checklist.md"]:
+    for bad in ["知识库/concepts", "知识库/sources", "知识库/entities", "知识库/questions", ".vault-meta", ".raw", ".mcp.json", ".claude/settings.local.json", ".obsidian/plugins/agent-client/sessions", "Untitled.canvas", "08 任务/Untitled.base", "使用指南/18 分发检查清单.md"]:
         check("absent: %s" % bad, not exists(bad))
-    for led in ["wiki/meta/ledgers/source-ledger.json", "wiki/meta/ledgers/claim-ledger.json"]:
+    for led in ["知识库/meta/ledgers/source-ledger.json", "知识库/meta/ledgers/claim-ledger.json"]:
         d = load(led); check("ledger empty: %s" % led, d is not None and not (d.get("sources") or d.get("claims")))
-    check("inbox empty", [f for f in files if f.startswith("inbox/") and not f.endswith(".gitkeep")] == [])
-    if ".obsidian/workspace.json" in texts: check("workspace.json opens Setup", "00 Dashboards/Setup.md" in texts[".obsidian/workspace.json"])
-    for must in ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".mcp.example.json", "LICENSE", "THIRD_PARTY_NOTICES.md", "CREDITS.md", "CHANGELOG.md", "Meta/version.md", "00 Dashboards/Setup.md", "Prompts/16 Onboarding Assistant.md"]:
+    check("inbox empty", [f for f in files if f.startswith("收件箱/") and not f.endswith(".gitkeep")] == [])
+    if ".obsidian/workspace.json" in texts: check("workspace.json opens Setup", "00 仪表盘/初始设置.md" in texts[".obsidian/workspace.json"])
+    for must in ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".mcp.example.json", "LICENSE", "THIRD_PARTY_NOTICES.md", "CREDITS.md", "CHANGELOG.md", "系统/版本.md", "00 仪表盘/初始设置.md", "提示词/16 初始化助手.md"]:
         check("present: %s" % must, exists(must))
     check("CLAUDE.md and GEMINI.md import AGENTS.md", "@AGENTS.md" in texts.get("CLAUDE.md", "") and "@AGENTS.md" in texts.get("GEMINI.md", ""))
-    # wikilinks resolve (by basename; Templates/ skipped because their targets are generated) and heading fragments exist
+    # wikilinks resolve (by basename; 模板/ skipped because their targets are generated) and heading fragments exist
     names = {os.path.basename(f)[:-3] for f in files if f.endswith(".md")}
     by_name = {os.path.basename(f)[:-3]: f for f in files if f.endswith(".md")}
     unresolved, badfrag = {}, {}
     for rel, t in texts.items():
-        if not rel.endswith(".md") or rel.startswith("Guide/Source") or rel.startswith("Templates/"): continue
+        if not rel.endswith(".md") or rel.startswith("使用指南/Source") or rel.startswith("模板/"): continue
         body = re.sub(r"```.*?```", "", t, flags=re.S); body = re.sub(r"`[^`\n]*`", "", body); body = re.sub(r"<%.*?%>", "", body, flags=re.S)
         for m in re.finditer(r"\[\[([^\]\|#]*)(?:#([^\]\|]*))?(?:\|[^\]]*)?\]\]", body):
             tgt = m.group(1).strip().rstrip("/"); frag = (m.group(2) or "").strip()
@@ -173,7 +173,7 @@ def main():
     check("all wikilinks resolve (except periodic dates)", not unresolved, "; ".join("%s <- %s" % (k, v[0]) for k, v in list(unresolved.items())[:8]))
     # js syntax
     for rel in files:
-        if rel.startswith("Meta/views/") and rel.endswith(".js"):
+        if rel.startswith("系统/视图/") and rel.endswith(".js"):
             src = texts.get(rel, "")
             r = subprocess.run(["node", "-e", "new (Object.getPrototypeOf(async function(){}).constructor)('dv','input','moment','app','Notice', require('fs').readFileSync(process.argv[1],'utf8'))", os.path.join(root, rel)], capture_output=True, text=True)
             check("js syntax %s" % rel, r.returncode == 0, r.stderr[-200:])
@@ -185,7 +185,7 @@ for(const p of process.argv.slice(1)){const s=fs.readFileSync(p,'utf8');const m=
  if(m[1].includes('\n')){console.log('NEWLINE '+p);process.exit(3)}
  for(const c of [cfg,null]){const out=new Function('app','tR',m[1]+'; return tR;')(mk(c),'');if(!out.split('\n').every(l=>/^(dq_|habit_|wheel_)\w+: (false)?$/.test(l))){console.log('BAD '+p+' '+JSON.stringify(out));process.exit(4)}}}
 console.log('ok');"""
-    tpls = [os.path.join(root, t) for t in ["Templates/Daily Note.md", "Templates/Personal Retreat.md"] if exists(t)]
+    tpls = [os.path.join(root, t) for t in ["模板/每日笔记.md", "模板/季度个人回顾.md"] if exists(t)]
     if tpls:
         r = subprocess.run(["node", "-e", sim] + tpls, capture_output=True, text=True)
         check("templater property generators produce valid properties", r.returncode == 0 and "ok" in r.stdout, (r.stdout + r.stderr)[-200:])

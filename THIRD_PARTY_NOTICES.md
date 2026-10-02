@@ -1,8 +1,8 @@
-# Third-party notices
+# 第三方组件声明
 
-This vault bundles the following Obsidian community plugins with their recorded versions and licenses. Each plugin folder includes its main script, manifest, and license; a stylesheet is included where supplied. The upstream links below are provenance references. File presence and matching version labels alone do not prove byte-for-byte identity with an upstream release. A public release requires a separate upstream provenance and redistribution review, including applicable source-distribution requirements.
+本 Vault 包含下列 Obsidian 社区插件，并记录了对应版本和许可证。每个插件文件夹都包含主脚本、清单和许可证；上游提供样式表时也会一并保留。下方链接用于追溯来源。文件存在且版本标签一致，并不能证明它与上游发布包逐字节相同。公开发布前仍需单独检查上游来源、再分发条件和可能适用的源码提供要求。
 
-| Plugin id | Version shipped | License | Upstream | Release |
+| 插件 ID | 随附版本 | 许可证 | 上游仓库 | 发布版本 |
 | --- | --- | --- | --- | --- |
 | dataview | 0.5.68 | MIT | https://github.com/blacksmithgu/obsidian-dataview | https://github.com/blacksmithgu/obsidian-dataview/releases/tag/0.5.68 |
 | templater-obsidian | 2.25.0 | AGPL-3.0 | https://github.com/SilentVoid13/Templater | https://github.com/SilentVoid13/Templater/releases/tag/2.25.0 |
@@ -15,13 +15,13 @@ This vault bundles the following Obsidian community plugins with their recorded 
 | agent-client | 0.12.1 | Apache-2.0 | https://github.com/RAIT-09/obsidian-agent-client | https://github.com/RAIT-09/obsidian-agent-client/releases/tag/0.12.1 |
 | seo | 0.5.6 | MIT | https://github.com/davidvkimball/obsidian-seo | https://github.com/davidvkimball/obsidian-seo/releases/tag/0.5.6 |
 
-Plugin ids are the ones Obsidian uses; the display names appear in Settings → Community plugins.
+插件 ID 是 Obsidian 内部使用的机器标识；显示名称可在“设置 → 第三方插件”中查看。
 
-## First-party component
+## 第一方组件
 
-The original Life OS application shell is included with this vault.
+本 Vault 包含第一方 Life OS 应用外壳。
 
-| Plugin id | Version shipped | License | Source |
+| 插件 ID | 随附版本 | 许可证 | 源码位置 |
 | --- | --- | --- | --- |
 | life-os-app | 0.20.0 | MIT | `.obsidian/plugins/life-os-app/` |
 

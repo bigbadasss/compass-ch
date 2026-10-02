@@ -1,28 +1,28 @@
 ---
-name: Bug report
-about: Something in the template does not work as the Guide says
+name: 错误报告
+about: 模板中的功能没有按使用指南工作
 labels: bug
 ---
 
-## What happened
+## 出现了什么
 
-<!-- One or two sentences. Which note, dashboard, template, or script? -->
+<!-- 请用一两句话说明，并写出相关笔记、仪表盘、模板或脚本。 -->
 
-## Steps to reproduce
+## 重现步骤
 
 1.
 2.
 3.
 
-## Expected
+## 预期结果
 
-## Environment
+## 使用环境
 
-- Compass version (`Meta/version.md`):
-- Obsidian version and OS:
-- Restricted mode turned off and app reloaded? yes / no
-- Plugins changed from the shipped versions? which
+- Compass 版本（见 `系统/版本.md`）：
+- Obsidian 版本和操作系统：
+- 是否关闭安全模式并重新载入应用：是 / 否
+- 是否更改了随模板提供的插件版本：如有，请列出
 
-## Notes
+## 补充说明
 
-<!-- Screenshots welcome. Do not paste API keys, the Local REST API settings page, or personal note contents. -->
+<!-- 欢迎附截图。请勿粘贴 API 密钥、Local REST API 设置页面或个人笔记内容。 -->

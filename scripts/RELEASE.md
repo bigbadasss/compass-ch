@@ -1,43 +1,40 @@
-# Release checklist
+# 发布检查清单
 
-A local candidate is not a public release. Never archive the working vault directly and never run the full template verifier against it.
+本地候选版本不等于公开发布版本。不要直接压缩正在使用的 Vault，也不要对包含本机状态的工作 Vault 运行完整模板验证。
 
-## Automated preparation
+## 自动准备
 
-The repository is maintainer source, not an already-built distribution. Keep the reviewed files in `scripts/template/defaults/` under version control. The builder requires them to replace personal configuration, planning, tasks, and knowledge state. Never populate these defaults from a personal vault.
+仓库是维护源。`scripts/template/defaults/` 中经过审查的文件用于替换个人配置、规划、任务和知识层状态，不能从个人 Vault 自动生成这些默认值。
 
-CI runs the application and release-safety contracts, builds a fresh candidate outside the checkout, verifies its exact manifest, and checks disposable archive extraction. The generated `MANIFEST.sha256`, workspace state, ZIP, and checksum are build outputs, not source files to commit. CI does not establish native acceptance or publish a release.
+持续集成会检查应用契约与发布安全，在仓库之外构建全新候选版本，核对清单，并测试一次性解压。生成的 `MANIFEST.sha256`、工作区状态、压缩包和校验码都是构建产物，不应提交到源码。自动检查不代表已经完成真实 Obsidian 验收，也不会自动发布。
 
-1. Run `node scripts/verify_life_os_app.mjs .`, `node scripts/verify_assistant_contracts.mjs .`, and `python3 scripts/verify_release_safety.py`.
-2. Choose an explicit version and a fresh output name outside the working vault. Existing destinations and archives are refused.
-3. Build a sanitized local candidate:
+1. 运行 `node scripts/verify_life_os_app.mjs .`、`node scripts/verify_assistant_contracts.mjs .` 和 `python3 scripts/verify_release_safety.py`。
+2. 选择明确版本号和 Vault 外的新输出目录。构建程序不会覆盖已有目录或压缩包。
+3. 构建经过清理的本地候选版本：
 
 ```bash
-python3 scripts/build_template.py --out ../life-os-releases --name LifeOS-1.1.0-candidate --version 1.1.0 --zip
+python3 scripts/build_template.py --out ../life-os-releases --name Compass-zh-CN --version 1.0.0 --zip
 ```
 
-4. Inspect the candidate's embedded `MANIFEST.sha256` and the archive's full `.sha256` sidecar. Verify archive contents and paths, not only its filename.
-   Run `python3 scripts/verify_archive_restore.py /absolute/path/to/candidate.zip` to validate the sidecar, reject unsafe archive entries, extract into a disposable directory, and compare every restored file with the embedded manifest. This does not restore or test a personal vault.
-5. Keep each flavor in its own fresh destination. The without-reading variant needs separate functional acceptance; do not assume removing a folder leaves all commands valid.
+4. 检查候选版本内的 `MANIFEST.sha256` 和压缩包旁的 `.sha256`。运行 `python3 scripts/verify_archive_restore.py /压缩包的绝对路径.zip`，验证校验码、路径安全、解压结果和每个文件的哈希值。
+5. 不同构建类型必须使用各自的新目录。无阅读模块版本也需要单独验收。
 
-Raw plugin settings are never copied to staging. The builder reconstructs allowlisted settings first, strips machine-local state, and uses private staging. Unknown plugin settings are omitted. This favors safe defaults over preserving every customization.
+构建程序会先重建允许的插件设置，再写入私有临时目录。未知插件设置会被省略。个人目录中的默认值不会先复制再清理；项目和写作看板会重建为空看板。规划、任务和知识层只使用已审查的默认文件。通过扫描不代表所有允许的源文件都已人工审阅。
 
-Files covered by reviewed defaults are skipped before copying. Canonical project and writing boards are rebuilt empty, without reading their live cards or lane names. Other personal boards receive no filename-based exemption. Planning, task, and knowledge-layer personal state comes only from reviewed defaults. Desktop metadata and local agent directories are excluded; core appearance and webviewer state are reset. Review functional behavior after these resets, especially capture and board creation. A passing scan is not proof that every allowed source file has been manually reviewed.
+## 公开发布前的人工检查
 
-## Human review before distribution
+- 检查准确的候选压缩包是否包含个人数据、未标记示例、错误源路径或异常文件。
+- 确认 README、更新日志、应用清单、第三方声明和候选版本号一致。
+- 单独核对第三方插件二进制来源和许可证要求。仅存在许可证文件不代表已经完成再分发审查。
+- 在隔离环境中检查 Local REST API 的实际监听行为。
+- 按 `使用指南/23 原生验收.md` 完成桌面端、移动端、模型服务商和 MCP 验收，并分别记录结果。
+- 未经实际测试，不得声称模型服务商已连接或备份可以恢复。
+- 提交、推送、创建 Release 和公开发布需要单独授权。
 
-- Review the exact archive for private data, example labeling, source paths, and unexpected files. The machine-local working vault is not the review target.
-- Check README, CHANGELOG, application manifest, notices, and candidate version metadata agree. Old 1.0.2 archives are not current Life OS candidates.
-- Verify upstream binary provenance and license requirements separately. Kanban's bundled license is GPL-3.0, not MIT. Presence of a LICENSE file alone is not a completed redistribution review.
-- Local REST API remains enabled over loopback HTTP in the package policy. Changing that default requires an explicit decision. Verify actual listener behavior in the isolated native test.
-- Complete `Guide/23 Native Acceptance.md` against the archive checksum. Record desktop-native, mobile, provider, and MCP outcomes separately.
-- Do not claim a provider is connected or a backup is recoverable without testing it.
-- Commit, push, release creation, and publication require separate authorization.
+## 升级与回退
 
-## Upgrade and rollback
+本项目没有原地升级器。关闭 Obsidian，完整备份旧 Vault，把新候选版本解压到旁边，再逐项迁移个人内容、自定义配置和模板。不要整目录覆盖 `.obsidian`。停用旧版本前，应实际测试备份恢复。系统不会自动清理旧版本。
 
-There is no in-place updater. Close Obsidian, back up the complete old vault, and extract the new candidate alongside it. Migrate personal content, custom configuration, and templates with conflict review. Do not copy the old or new `.obsidian` directory wholesale. Test restoring the backup before retiring any old copy. No archive cleanup or retirement is automatic.
+## 当前验收边界
 
-## Current acceptance boundary
-
-Synthetic tests exercise parser logic, controls, and packaging safety without personal notes or provider calls. They do not establish native Obsidian acceptance. Keep every unrun check marked not tested.
+模拟测试会验证解析逻辑、控件和打包安全，并且不会读取个人笔记或调用模型服务商。它不能代替真实 Obsidian 验收。未运行的检查必须保持“未测试”状态。

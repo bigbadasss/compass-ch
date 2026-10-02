@@ -1,10 +1,10 @@
-# Code of Conduct
+# 行为准则
 
-This is a community template about running your own life honestly. The same standard applies here.
+这是一个帮助人们诚实管理自己生活的社区模板，因此社区交流也遵循同样的标准。
 
-- Be kind and assume good intent. Members share personal setups; do not mock anyone's habits, faith, family situation, or pace.
-- Keep other people's data out of the repo: no journal excerpts, screenshots with personal notes, or keys in issues, pull requests, or discussions.
-- Report problems with the template as issues; report security problems privately (see `SECURITY.md`).
-- Maintainers may edit or remove content that breaks these rules and may block repeat offenders.
+- 保持友善，并假定他人出于善意。成员会分享个人设置，请勿嘲笑他人的习惯、信仰、家庭状况或生活节奏。
+- 不要把他人的数据提交到仓库。问题、拉取请求和讨论中不得包含日记摘录、带有个人笔记的截图或密钥。
+- 模板问题请提交普通问题；安全问题请按 `SECURITY.md` 私下报告。
+- 维护者可以编辑或删除违反这些规则的内容，也可以限制多次违规者的参与权限。
 
-Adapted in spirit from the Contributor Covenant (https://www.contributor-covenant.org/), version 2.1.
+本准则参考了 2.1 版 [Contributor Covenant](https://www.contributor-covenant.org/) 的精神。

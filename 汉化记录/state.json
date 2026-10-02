@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "locale": "zh-CN",
+  "upstream_repository": "https://github.com/AgriciDaniel/compass.git",
+  "upstream_branch": "main",
+  "fork_repository": "https://github.com/bigbadasss/compass.git",
+  "localization_branch": "compass-zh-CN",
+  "upstream_base_commit": "ba2c1cf73a8e305c02fa8819f0236f028fd972b3",
+  "base_commit_description": "docs: add Compass video demo to README",
+  "last_reviewed": "2026-10-02",
+  "phase": "translation_complete_pending_native_acceptance",
+  "completed_scopes": [
+    "markdown_dashboards",
+    "guides",
+    "templates",
+    "prompts",
+    "example_content",
+    "dataview_visible_strings",
+    "build_and_verification_strings",
+    "user_visible_folder_and_note_names",
+    "life_os_plugin_interface",
+    "path_and_link_migration"
+  ],
+  "pending_scopes": [
+    "native_desktop_acceptance",
+    "native_mobile_acceptance"
+  ]
+}

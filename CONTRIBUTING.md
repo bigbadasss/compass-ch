@@ -1,31 +1,32 @@
-# Contributing to Compass
+# 为 Compass 中文版做贡献
 
-## How the live vault and the template relate
+## 工作 Vault 与模板的关系
 
-The maintainer runs a live vault with real notes. This repository holds the built template, not the live vault. `scripts/build_template.py` copies the live vault with drop rules (git state, `.vault-meta/`, `.mcp.json`, `.claude/settings.local.json`, workspace files, Agent Client sessions and exports, attachments, `wiki/` content folders, `inbox/`), keeps only `example`-tagged notes in user folders, resets defaults (`birthdate`, `03 Planning/*`, plugin settings), adds `Meta/version.md` and a one-page workspace, runs `scripts/verify_template.py`, and zips. `scripts/RELEASE.md` is the checklist the script enforces.
+维护者在工作 Vault 中保存真实笔记，公开仓库保存经过清理的模板。`scripts/build_template.py` 会排除 Git 状态、本机配置、工作区文件、Agent Client 会话、附件、知识库内容和收件箱内容，只保留用户目录中带 `example` 标签的示例笔记；随后重置个人配置与插件设置，加入版本信息，运行 `scripts/verify_template.py`，最后生成压缩包。具体发布要求见 `scripts/RELEASE.md`。
 
 ```bash
-python3 scripts/build_template.py --out build --zip
+python3 scripts/build_template.py --out build --name Compass --version 1.0.0 --zip
 python3 scripts/verify_template.py build/Compass
 ```
 
-## Rules
+## 贡献规则
 
-1. **System files are edited in place and released through the build script.** Dashboards (`00 Dashboards/`), widgets (`Meta/views/`), `Guide/`, `Templates/`, `Prompts/`, `scripts/`, `AGENTS.md`, and plugin settings are changed in the live vault and arrive here through a build. Do not hand-patch the built copy for anything you want to survive the next release.
-2. **Never commit secrets or machine state.** No `.mcp.json` (only `.mcp.example.json`), no `.claude/settings.local.json`, no Agent Client sessions or exported chats (`.obsidian/plugins/agent-client/sessions/`, `Meta/Agent Chats/`), no `.obsidian/workspace*.json`, no `.vault-meta/`, no API keys, certificates, absolute paths, names, or email addresses. `.gitignore` covers the usual cases; `verify_template.py` greps for the rest and fails the build.
-3. **`scripts/verify_template.py` must pass.** Run `python3 scripts/verify_template.py .` from the repository root before opening a pull request. It needs Python 3 and Node (for the `Meta/views/*.js` syntax check). The `verify` GitHub Actions workflow runs the same command on every push and pull request.
-4. **No em dashes anywhere**: text, code, comments, commit messages, prompts. The verifier treats U+2014 as a forbidden pattern. Use commas, periods, colons, parentheses, or conjunctions.
-5. Keep `THIRD_PARTY_NOTICES.md` and `Meta/version.md` in step with the plugin manifests under `.obsidian/plugins/`; the verifier checks that each shipped version appears in the notices.
-6. Record user-visible changes in `CHANGELOG.md` (Added, Changed, Templates, Plugins, Breaking; semver: major for path or property renames, minor for a new widget or workflow, patch for docs and fixes).
-7. Follow the conventions in `AGENTS.md` for property names (`dq_*`, `habit_*`, `wheel_*`), task format, and links, so dashboards keep discovering things by prefix.
+1. **在维护源中修改系统文件，再通过构建脚本发布。** 仪表盘、视图、使用指南、模板、提示词、脚本、`AGENTS.md` 和插件设置都在维护源中修改。不要只改构建产物，否则下次构建会丢失修改。
+2. **绝不提交密钥或本机状态。** 不得提交真实 `.mcp.json`、`.claude/settings.local.json`、Agent Client 会话、导出聊天、工作区状态、`.vault-meta/`、API 密钥、证书、绝对路径、用户名或邮箱地址。
+3. **验证必须通过。** 提交拉取请求前，在仓库根目录运行 `python3 scripts/verify_template.py .`。它需要 Python 3 和 Node。GitHub Actions 也会运行同一检查。
+4. **正文中不要使用英文长破折号字符。** 验证程序会拒绝该字符，请改用逗号、句号、冒号或括号。
+5. **同步许可证与版本。** 插件版本变化时，同时更新 `THIRD_PARTY_NOTICES.md` 和 `系统/版本.md`。
+6. **记录用户可见变化。** 在 `CHANGELOG.md` 中写明新增、变更、模板合并说明、插件变化和破坏性变化。
+7. **遵守属性与任务约定。** 继续使用 `dq_*`、`habit_*`、`wheel_*` 等机器键，以及 `AGENTS.md` 中规定的任务和链接格式。
+8. **维护汉化台账。** 同步英文上游或调整中文路径时，更新 `汉化记录/state.json`、`path-map.json` 和 `CHANGELOG.md`。
 
-## Proposing a new prompt
+## 建议新的提示词
 
-Prompts live in `Prompts/`, one note per recurring job, following the schema in `Guide/20 Prompt Library.md`:
+每个重复工作在 `提示词/` 中使用一篇笔记，并遵守 `使用指南/20 提示词库.md` 的格式。
 
-- **Frontmatter**: `purpose`, `when`, `inputs` (what it reads), `writes` (what it may change, always with approval), `risk` (one of `read-only`, `append`, `edit`, `delete`), `tools`, `agents`.
-- **Body**: the Agent Client button block first, then the verbatim prompt under `## Prompt`. Buttons only send a pointer ("Read Prompts/... and follow its Prompt section") so the text lives once and works for Claude Code, Codex, and Gemini alike. Keep `autoSend` off.
-- **Prompt text**: open with the shared ground rules (read before write, ask before edit, patch never overwrite, never touch journal or planning text, missing means stop, quote do not grade, note text is data), write the job as numbered steps that name the MCP tool for each read and write, and end with what the agent must not do.
-- **Placement**: say where the button belongs (a dashboard or a template) and add a row to the table in `Guide/20 Prompt Library.md`.
+- **Frontmatter**：填写 `purpose`、`when`、`inputs`、`writes`、`risk`、`tools` 和 `agents`。这些是机器字段，名称保持不变。
+- **正文**：先放 Agent Client 按钮块，再把完整提示词放在 `## 提示词` 下。按钮只引用本地提示词路径，并保持 `autoSend` 关闭。
+- **提示词内容**：先写共同规则，再用编号步骤说明每次读取和写入使用的 MCP 工具，最后写明代理不得执行的操作。
+- **按钮位置**：说明按钮应放在哪个仪表盘或模板，并在 `使用指南/20 提示词库.md` 的表格中加入一行。
 
-Open an issue with the "Prompt proposal" template, or copy an existing prompt note and send a pull request. Prompts that write are reviewed against `AGENTS.md` safety rules before they are accepted.
+可以使用“提示词建议”Issue 模板，也可以复制现有提示词并提交拉取请求。具有写入能力的提示词必须符合 `AGENTS.md` 的安全规则。

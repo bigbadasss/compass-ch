@@ -1,59 +1,59 @@
 {
   "data_version": 2,
-  "templates_folder": "Templates",
+  "templates_folder": "模板",
   "trigger_on_file_creation_mode": "folder",
   "folder_templates": [
     {
-      "folder": "01 Journal/Quarterly",
-      "template": "Templates/Quarterly Note.md"
+      "folder": "01 日志/每季度",
+      "template": "模板/季度笔记.md"
     },
     {
-      "folder": "01 Journal/Weekly",
-      "template": "Templates/Weekly Note.md"
+      "folder": "01 日志/每周",
+      "template": "模板/每周笔记.md"
     },
     {
-      "folder": "01 Journal/Daily",
-      "template": "Templates/Daily Note.md"
+      "folder": "01 日志/每日",
+      "template": "模板/每日笔记.md"
     },
     {
-      "folder": "02 Retreats",
-      "template": "Templates/Personal Retreat.md"
+      "folder": "02 季度回顾",
+      "template": "模板/季度个人回顾.md"
     },
     {
-      "folder": "04 Projects",
-      "template": "Templates/Project.md"
+      "folder": "04 项目",
+      "template": "模板/项目.md"
     },
     {
-      "folder": "05 People",
-      "template": "Templates/Person.md"
+      "folder": "05 人物",
+      "template": "模板/人物.md"
     },
     {
-      "folder": "06 Writing/Newsletters",
-      "template": "Templates/Newsletter.md"
+      "folder": "06 写作/新闻通讯",
+      "template": "模板/新闻通讯.md"
     },
     {
-      "folder": "06 Writing/YouTube Scripts",
-      "template": "Templates/YouTube Script.md"
+      "folder": "06 写作/视频脚本",
+      "template": "模板/视频脚本.md"
     },
     {
-      "folder": "06 Writing/Articles",
-      "template": "Templates/Article.md"
+      "folder": "06 写作/文章",
+      "template": "模板/文章.md"
     },
     {
-      "folder": "06 Writing/Course Content",
-      "template": "Templates/Course Lesson.md"
+      "folder": "06 写作/课程内容",
+      "template": "模板/课程课时.md"
     },
     {
-      "folder": "07 Library/Book Notes",
-      "template": "Templates/Book Note.md"
+      "folder": "07 资料库/书籍笔记",
+      "template": "模板/书籍笔记.md"
     },
     {
-      "folder": "09 Reading/Study Notes",
-      "template": "Templates/Study Note.md"
+      "folder": "09 阅读/学习笔记",
+      "template": "模板/学习笔记.md"
     }
   ],
   "enabled_templates_hotkeys": [
-    "Templates/Daily Questions Prompt.md"
+    "模板/每日问题提示.md"
   ],
   "syntax_highlighting": true,
   "syntax_highlighting_mobile": false

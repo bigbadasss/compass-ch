@@ -1,4 +1,4 @@
-Read `AGENTS.md` first; it is the canonical instruction file for every agent in this vault.
+请先读取 `AGENTS.md`，它是本 Vault 中所有代理共同遵守的正式规则文件。
 @AGENTS.md
 
-Gemini CLI note: there is no wiki transaction skill here; treat `wiki/` as read-only and say so if asked to write there.
+Gemini CLI 补充规则：这里没有知识库事务技能，因此把 `知识库/` 视为只读目录；用户要求写入时，应说明这一限制。

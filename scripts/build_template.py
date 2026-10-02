@@ -16,30 +16,30 @@ LIVE = os.path.dirname(HERE)
 
 DROP_GLOBS = [
     ".directory", ".claude", ".claude/*", ".claude-obsidian.json", ".github", ".github/*",
-    "Guide/18 Distribution Checklist.md",
+    "使用指南/18 分发检查清单.md",
     ".git", ".git/*", ".vault-meta", ".vault-meta/*", ".raw", ".raw/*", ".trash", ".trash/*",
     ".claude/settings.local.json", ".mcp.json", ".obsidian/workspace*.json", ".obsidian/graph.json",
     ".obsidian/plugins/agent-client/sessions", ".obsidian/plugins/agent-client/sessions/*",
-    ".obsidian/plugins/*/data.json.bak", "Meta/Agent Chats", "Meta/Agent Chats/*", "Agent Client", "Agent Client/*",
+    ".obsidian/plugins/*/data.json.bak", "系统/Agent Chats", "系统/Agent Chats/*", "Agent Client", "Agent Client/*",
     "scripts/template", "scripts/template/*", "build", "build/*",
-    "wiki/concepts", "wiki/concepts/*", "wiki/sources", "wiki/sources/*", "wiki/entities", "wiki/entities/*", "wiki/questions", "wiki/questions/*", "wiki/log/*", "inbox/*",
+    "知识库/concepts", "知识库/concepts/*", "知识库/sources", "知识库/sources/*", "知识库/entities", "知识库/entities/*", "知识库/questions", "知识库/questions/*", "知识库/log/*", "收件箱/*",
     "Untitled*", "*/Untitled*", "*.canvas", ".DS_Store", "*/.DS_Store", "Thumbs.db", "*/Thumbs.db",
     "__pycache__", "*/__pycache__", "*.pyc", "*.png.bak", "*.html", "*.log",
 ]
-USER_CONTENT = ["01 Journal/", "02 Retreats/", "04 Projects/", "05 People/", "06 Writing/", "07 Library/",
-                "09 Reading/Chapters/", "09 Reading/Verses/", "09 Reading/Study Notes/", "09 Reading/Topics/"]
-KEEP_IN_USER_FOLDERS = re.compile(r".* Board\.md$")
+USER_CONTENT = ["01 日志/", "02 季度回顾/", "04 项目/", "05 人物/", "06 写作/", "07 资料库/",
+                "09 阅读/章节/", "09 阅读/经文/", "09 阅读/学习笔记/", "09 阅读/主题/"]
+KEEP_IN_USER_FOLDERS = re.compile(r".*(?:Board|看板)\.md$")
 BOARD_DEFAULTS = {
-    "04 Projects/Projects Board.md": "Projects Board",
-    "06 Writing/Newsletters/Newsletter Board.md": "Newsletter Board",
-    "06 Writing/YouTube Scripts/YouTube Board.md": "YouTube Board",
-    "06 Writing/Articles/Article Board.md": "Article Board",
-    "06 Writing/Course Content/Course Board.md": "Course Board",
+    "04 项目/项目看板.md": "项目看板",
+    "06 写作/新闻通讯/新闻通讯看板.md": "新闻通讯看板",
+    "06 写作/视频脚本/视频看板.md": "视频看板",
+    "06 写作/文章/文章看板.md": "文章看板",
+    "06 写作/课程内容/课程看板.md": "课程看板",
 }
-READING_PATHS = ["09 Reading", "Guide/07 Workflow - Daily Reading.md", "scripts/generate_reading_plan.py", "scripts/split_bible.py", "Templates/Study Note.md"]
+READING_PATHS = ["09 阅读", "使用指南/07 工作流 - 每日阅读.md", "scripts/generate_reading_plan.py", "scripts/split_bible.py", "模板/学习笔记.md"]
 
 def dropped(rel):
-    if rel.startswith("Meta/attachments/"):
+    if rel.startswith("系统/附件/"):
         return not (os.path.basename(rel) in (".gitkeep",) or os.path.basename(rel).startswith("cover."))
     return any(fnmatch.fnmatch(rel, g) for g in DROP_GLOBS)
 
@@ -70,7 +70,7 @@ def copy_tree(live, out):
             if default.is_file():
                 # Never stage personal values before replacing them with defaults.
                 continue
-            if rel.startswith(("03 Planning/", "08 Tasks/", "wiki/")):
+            if rel.startswith(("03 规划/", "08 任务/", "知识库/")):
                 # Only reviewed defaults populate these personal-state folders.
                 continue
             if rel.startswith(".obsidian/") and not rel.startswith(".obsidian/plugins/"):
@@ -99,7 +99,7 @@ def copy_tree(live, out):
             if rel in BOARD_DEFAULTS:
                 target = Path(out, rel)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text("---\nkanban-plugin: board\n---\n\n# " + BOARD_DEFAULTS[rel] + "\n\n## Ideas\n\n## In progress\n\n## Done\n", encoding="utf-8")
+                target.write_text("---\nkanban-plugin: board\n---\n\n# " + BOARD_DEFAULTS[rel] + "\n\n## 想法\n\n## 进行中\n\n## 已完成\n", encoding="utf-8")
                 continue
             if rel.startswith(".obsidian/plugins/") and f != "data.json" and f not in ("main.js", "manifest.json", "styles.css", "LICENSE"):
                 continue
@@ -123,7 +123,7 @@ def safe_plugin_settings(plugin, source):
     fixed = {
         "obsidian-local-rest-api": {"enableInsecureServer": True},
         "agent-client": {"savedSessions": [], "autoAllowPermissions": False, "customAgents": [], "presetAgents": {}, "autoMentionActiveNote": False, "expandWikilinkContext": False},
-        "seo": {"scanDirectories": "06 Writing", "checkExternalLinks": False},
+        "seo": {"scanDirectories": "06 写作", "checkExternalLinks": False},
         "omnisearch": {"httpApiEnabled": False, "DANGER_httpHost": None},
         "life-os-app": {},
     }
@@ -171,7 +171,7 @@ def validate_destination(live, output_root, name):
 
 def reset_defaults(out):
     src = os.path.join(HERE, "template", "defaults")
-    required = ["Meta/Compass Config.md", "03 Planning/Life Theme.md", "03 Planning/Core Values.md", "03 Planning/Ideal Week.md", "08 Tasks/Tasks.md"]
+    required = ["系统/Compass 配置.md", "03 规划/人生主题.md", "03 规划/核心价值观.md", "03 规划/理想一周.md", "08 任务/任务总表.md"]
     if any(not Path(src, rel).is_file() or Path(src, rel).is_symlink() for rel in required):
         raise ValueError("Clean source defaults are missing or unsafe")
     for root, _, files in os.walk(src):
@@ -207,7 +207,7 @@ def json_surgery(out):
     p, d = load(".obsidian/plugins/seo/data.json")
     if d is not None:
         d.pop("cachedGlobalResults", None); d.pop("lastScanTimestamp", None)
-        d["scanDirectories"] = "06 Writing"; d["checkExternalLinks"] = False
+        d["scanDirectories"] = "06 写作"; d["checkExternalLinks"] = False
         save(p, d)
     p, d = load(".obsidian/plugins/omnisearch/data.json")
     if d is not None:
@@ -221,40 +221,40 @@ def json_surgery(out):
     if d is not None: d["sync"] = False; save(p, d)
     p, d = load(".obsidian/app.json")
     if d is not None: d["newFileLocation"] = "current"; d.pop("newFileFolderPath", None); save(p, d)
-    workspace = {"main": {"id": "main", "type": "split", "children": [{"id": "leaf", "type": "tabs", "children": [{"id": "setup", "type": "leaf", "state": {"type": "markdown", "state": {"file": "00 Dashboards/Setup.md", "mode": "preview"}}}]}], "direction": "vertical"},
-                 "active": "setup", "lastOpenFiles": ["00 Dashboards/Setup.md"]}
+    workspace = {"main": {"id": "main", "type": "split", "children": [{"id": "leaf", "type": "tabs", "children": [{"id": "setup", "type": "leaf", "state": {"type": "markdown", "state": {"file": "00 仪表盘/初始设置.md", "mode": "preview"}}}]}], "direction": "vertical"},
+                 "active": "setup", "lastOpenFiles": ["00 仪表盘/初始设置.md"]}
     save(os.path.join(out, ".obsidian/workspace.json"), workspace)
 
 def text_surgery(out, without_reading):
-    p = os.path.join(out, "Guide/Source - Video Analysis.md")
+    p = os.path.join(out, "使用指南/来源 - 视频分析.md")
     if os.path.exists(p):
         s = open(p, encoding="utf-8").read()
-        i = s.find("\n## Transcript")
+        i = s.find("\n## 视频转录")
         if i != -1:
-            s = s[:i] + "\n## Transcript\nNot included in the distributed template. Watch the video at the source URL above.\n"
+            s = s[:i] + "\n## 视频转录\n分发模板不包含转录文本，请通过上方来源链接观看原视频。\n"
             open(p, "w", encoding="utf-8").write(s)
     if without_reading:
         for rel in READING_PATHS:
             p = os.path.join(out, rel)
             if os.path.isdir(p): shutil.rmtree(p)
             elif os.path.exists(p): os.remove(p)
-        p = os.path.join(out, "Templates/Daily Note.md")
+        p = os.path.join(out, "模板/每日笔记.md")
         s = open(p, encoding="utf-8").read()
-        s = re.sub(r"> \[!reading\]- Daily reading\n(?:> .*\n)+\n", "", s)
-        s = s.replace("path does not include 09 Reading/Reading Plan\n", "")
+        s = re.sub(r"> \[!reading\]- 每日阅读\n(?:> .*\n)+\n", "", s)
+        s = s.replace("path does not include 09 阅读/阅读计划\n", "")
         open(p, "w", encoding="utf-8").write(s)
         def edit(rel, fn):
             q = os.path.join(out, rel)
             if os.path.exists(q):
                 t = open(q, encoding="utf-8").read(); open(q, "w", encoding="utf-8").write(fn(t))
-        edit("00 Dashboards/Setup.md", lambda t: t.replace(" Decide the reading module: fill [[Reading Plan]] or delete `09 Reading`.", ""))
-        edit("Guide/00 Start Here.md", lambda t: re.sub(r"^\| 5 \| Daily reading.*\n", "", t, flags=re.M))
-        edit("AGENTS.md", lambda t: re.sub(r"^\| `09 Reading/`.*\n", "", t, flags=re.M))
-        edit("README.md", lambda t: re.sub(r"^09 Reading/.*\n", "", t, flags=re.M))
-        edit("00 Dashboards/Task Dashboard.md", lambda t: t.replace("path does not include 09 Reading/Reading Plan\n", ""))
+        edit("00 仪表盘/初始设置.md", lambda t: t.replace("决定是否使用阅读模块：填写 [[阅读计划|阅读计划]]，或者删除 `09 阅读`。", ""))
+        edit("使用指南/00 从这里开始.md", lambda t: re.sub(r"^\| 5 \| 每日阅读.*\n", "", t, flags=re.M))
+        edit("AGENTS.md", lambda t: re.sub(r"^\| `09 阅读/`.*\n", "", t, flags=re.M))
+        edit("README.md", lambda t: re.sub(r"^09 阅读/.*\n", "", t, flags=re.M))
+        edit("00 仪表盘/任务仪表盘.md", lambda t: t.replace("path does not include 09 阅读/阅读计划\n", ""))
         tj = os.path.join(out, ".obsidian/plugins/templater-obsidian/data.json")
         if os.path.exists(tj):
-            d = json.load(open(tj)); d["folder_templates"] = [x for x in d.get("folder_templates", []) if not x.get("folder", "").startswith("09 Reading")]
+            d = json.load(open(tj)); d["folder_templates"] = [x for x in d.get("folder_templates", []) if not x.get("folder", "").startswith("09 阅读")]
             json.dump(d, open(tj, "w"), indent=2); open(tj, "a").write("\n")
 
 def version_stamp(out, version):
@@ -263,8 +263,8 @@ def version_stamp(out, version):
     for d in sorted(os.listdir(pdir)):
         m = os.path.join(pdir, d, "manifest.json")
         if os.path.exists(m): plugins[d] = json.load(open(m))["version"]
-    open(os.path.join(out, "Meta/version.md"), "w").write(
-        "---\ntemplate_version: %s\nbuilt: %s\nrelease_status: candidate\nmin_obsidian: 1.13.1\nplugins:\n%s---\n# Version\n\nThis is a local candidate, not evidence of native acceptance or publication. There is no in-place updater. Back up the old vault and migrate content and custom configuration into a separate fresh copy with conflict review. See `scripts/RELEASE.md`.\n"
+    open(os.path.join(out, "系统/版本.md"), "w").write(
+        "---\ntemplate_version: %s\nbuilt: %s\nrelease_status: candidate\nmin_obsidian: 1.13.1\nplugins:\n%s---\n# 版本\n\n这是本地候选版本，不代表已经通过原生验收或正式发布。当前没有原地升级器。请先备份旧 Vault，再把内容和自定义配置迁移到单独的新副本中，并逐项处理冲突。参见 `scripts/RELEASE.md`。\n"
         % (version, datetime.date.today().isoformat(), "".join('  %s: "%s"\n' % kv for kv in plugins.items())))
 
 def chmod_all(out):
@@ -308,9 +308,9 @@ def main():
         json_surgery(out)
         text_surgery(out, a.without_reading)
         version_stamp(out, version)
-        os.makedirs(os.path.join(out, "inbox"), exist_ok=True); open(os.path.join(out, "inbox/.gitkeep"), "a").close()
-        os.makedirs(os.path.join(out, "Meta/attachments"), exist_ok=True)
-        open(os.path.join(out, "Meta/attachments/.gitkeep"), "a").close()
+        os.makedirs(os.path.join(out, "收件箱"), exist_ok=True); open(os.path.join(out, "收件箱/.gitkeep"), "a").close()
+        os.makedirs(os.path.join(out, "系统/附件"), exist_ok=True)
+        open(os.path.join(out, "系统/附件/.gitkeep"), "a").close()
         chmod_all(out)
         manifest(out)
         rc = subprocess.call([sys.executable, os.path.join(HERE, "verify_template.py"), out])

@@ -1,12 +1,12 @@
 ---
-name: Prompt proposal
-about: Propose a new recurring job for the Prompts/ library (schema in Guide/20 Prompt Library.md)
+name: 提示词建议
+about: 为提示词库建议一个新的重复工作流，格式见使用指南/20 提示词库.md
 labels: prompt, enhancement
 ---
 
-## Job
+## 工作内容
 
-<!-- One line: what the agent does and for whom. -->
+<!-- 用一句话说明代理要为谁完成什么工作。 -->
 
 ## Frontmatter
 
@@ -18,17 +18,17 @@ labels: prompt, enhancement
 - tools:
 - agents:
 
-## Prompt
+## 提示词
 
-<!-- Numbered steps naming the MCP tool for each read and write. Open with the shared ground rules, end with what the agent must not do. -->
+<!-- 使用编号步骤，并为每次读取和写入标出 MCP 工具。开头写明共同规则，结尾写明代理不得执行的操作。 -->
 
-## Where the button goes
+## 按钮位置
 
-<!-- Which dashboard or template, and the proposed row for the table in Guide/20. -->
+<!-- 写明按钮应放在哪个仪表盘或模板，以及应加入使用指南/20 中的哪一行。 -->
 
-## Checklist
+## 检查清单
 
-- [ ] No em dashes
-- [ ] `autoSend` off
-- [ ] Never touches journal, retreat, or planning text
-- [ ] Tested with at least one agent (Claude Code, Codex, or Gemini CLI)
+- [ ] 正文中没有英文长破折号字符
+- [ ] `autoSend` 已关闭
+- [ ] 不修改日记、季度回顾或规划正文
+- [ ] 已使用至少一个代理测试，例如 Claude Code、Codex 或 Gemini CLI

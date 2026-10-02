@@ -2,6 +2,6 @@
   "legacy_raw": ".raw",
   "role": "vault",
   "schema": "claude-obsidian.workspace.v1",
-  "source_inbox": "inbox",
+  "source_inbox": "收件箱",
   "vault": "."
 }

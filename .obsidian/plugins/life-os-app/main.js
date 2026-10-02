@@ -12,11 +12,11 @@ const {
 const VIEW_TYPE = "life-os-home";
 
 const DEFAULT_FOLDERS = Object.freeze({
-  daily: "01 Journal/Daily",
-  weekly: "01 Journal/Weekly",
-  quarterly: "01 Journal/Quarterly",
-  retreats: "02 Retreats",
-  projects: "04 Projects",
+  daily: "01 日志/每日",
+  weekly: "01 日志/每周",
+  quarterly: "01 日志/每季度",
+  retreats: "02 季度回顾",
+  projects: "04 项目",
 });
 
 const TASK_STATUS_TYPES = Object.freeze({
@@ -65,26 +65,26 @@ function habitState(value) {
 const CAPTURE_ACTIONS = [
   {
     icon: "notebook-pen",
-    label: "Journal",
-    description: "Append a journal entry to today.",
+    label: "写日记",
+    description: "在今天的笔记中追加一条日记。",
     command: "quickadd:choice:lifeos-journal",
   },
   {
     icon: "trophy",
-    label: "Log a win",
-    description: "Record something worth remembering.",
+    label: "记录收获",
+    description: "记录一件值得记住的事。",
     command: "quickadd:choice:lifeos-win",
   },
   {
     icon: "heart",
-    label: "Gratitude",
-    description: "Capture what you appreciate.",
+    label: "记录感恩",
+    description: "记录你所感激的事情。",
     command: "quickadd:choice:lifeos-gratitude",
   },
   {
     icon: "check-square",
-    label: "Add a task",
-    description: "Send a task to the master inbox.",
+    label: "添加任务",
+    description: "把任务添加到任务总表的收件箱。",
     command: "quickadd:choice:lifeos-task",
   },
 ];
@@ -93,74 +93,74 @@ const CAPTURE_MENU_ACTIONS = [
   ...CAPTURE_ACTIONS,
   {
     icon: "lightbulb",
-    label: "Project idea",
-    description: "Add an idea to the Projects board.",
+    label: "项目想法",
+    description: "把想法添加到项目看板。",
     command: "quickadd:choice:lifeos-project-idea",
   },
   {
     icon: "mail",
-    label: "Newsletter idea",
-    description: "Add an idea to the newsletter backlog.",
+    label: "新闻通讯想法",
+    description: "把想法添加到新闻通讯待办。",
     command: "quickadd:choice:lifeos-newsletter-idea",
   },
   {
     icon: "video",
-    label: "Video idea",
-    description: "Add an idea to the video backlog.",
+    label: "视频想法",
+    description: "把想法添加到视频待办。",
     command: "quickadd:choice:lifeos-video-idea",
   },
   {
     icon: "newspaper",
-    label: "Article idea",
-    description: "Add an idea to the article backlog.",
+    label: "文章想法",
+    description: "把想法添加到文章待办。",
     command: "quickadd:choice:lifeos-article-idea",
   },
   {
     icon: "folder-plus",
-    label: "New project",
-    description: "Create a canonical project note from its template.",
+    label: "新建项目",
+    description: "使用模板创建标准项目笔记。",
     command: "quickadd:choice:lifeos-new-project",
   },
   {
     icon: "user-plus",
-    label: "New person",
-    description: "Create a private relationship note from its template.",
+    label: "新建人物",
+    description: "使用模板创建私密人物关系笔记。",
     command: "quickadd:choice:lifeos-new-person",
   },
   {
     icon: "file-plus-2",
-    label: "New newsletter",
-    description: "Create a newsletter draft from its template.",
+    label: "新建新闻通讯",
+    description: "使用模板创建新闻通讯草稿。",
     command: "quickadd:choice:lifeos-new-newsletter",
   },
   {
     icon: "file-video-2",
-    label: "New video script",
-    description: "Create a video script from its template.",
+    label: "新建视频脚本",
+    description: "使用模板创建视频脚本。",
     command: "quickadd:choice:lifeos-new-video",
   },
   {
     icon: "file-pen-line",
-    label: "New article",
-    description: "Create an article draft from its template.",
+    label: "新建文章",
+    description: "使用模板创建文章草稿。",
     command: "quickadd:choice:lifeos-new-article",
   },
   {
     icon: "graduation-cap",
-    label: "New course lesson",
-    description: "Create a course lesson from its template.",
+    label: "新建课程课时",
+    description: "使用模板创建课程课时。",
     command: "quickadd:choice:lifeos-new-course-lesson",
   },
   {
     icon: "book-plus",
-    label: "New book note",
-    description: "Create a book note in the local library.",
+    label: "新建书籍笔记",
+    description: "在本地资料库中创建书籍笔记。",
     command: "quickadd:choice:lifeos-new-book",
   },
   {
     icon: "book-open-check",
-    label: "New study note",
-    description: "Create a reading study note from its template.",
+    label: "新建学习笔记",
+    description: "使用模板创建阅读学习笔记。",
     command: "quickadd:choice:lifeos-new-study-note",
   },
 ];
@@ -168,26 +168,26 @@ const CAPTURE_MENU_ACTIONS = [
 const PERIOD_ACTIONS = [
   {
     icon: "calendar-days",
-    label: "Today",
-    description: "Open or create today’s note.",
+    label: "今天",
+    description: "打开或创建今天的笔记。",
     command: "quickadd:choice:lifeos-daily",
   },
   {
     icon: "calendar-range",
-    label: "This week",
-    description: "Open or create this week’s review.",
+    label: "本周",
+    description: "打开或创建本周回顾。",
     command: "quickadd:choice:lifeos-weekly",
   },
   {
     icon: "compass",
-    label: "This quarter",
-    description: "Open the current quarterly note.",
+    label: "本季度",
+    description: "打开当前季度笔记。",
     command: "quickadd:choice:lifeos-quarterly",
   },
   {
     icon: "tent-tree",
-    label: "Retreat",
-    description: "Open the current personal retreat.",
+    label: "季度回顾",
+    description: "打开当前季度个人回顾。",
     command: "quickadd:choice:lifeos-retreat",
   },
 ];
@@ -195,224 +195,224 @@ const PERIOD_ACTIONS = [
 const DESTINATIONS = [
   {
     icon: "layout-dashboard",
-    label: "Compass",
-    description: "Direction, habits, questions, and life wheel.",
-    path: "00 Dashboards/Compass Dashboard.md",
+    label: "Compass 总览",
+    description: "查看方向、习惯、每日问题和生命之轮。",
+    path: "00 仪表盘/Compass 总览.md",
   },
   {
     icon: "list-checks",
-    label: "Tasks",
-    description: "See the full task system.",
-    path: "00 Dashboards/Task Dashboard.md",
+    label: "任务",
+    description: "查看完整任务系统。",
+    path: "00 仪表盘/任务仪表盘.md",
   },
   {
     icon: "folder-kanban",
-    label: "Projects",
-    description: "Review active projects and ideas.",
-    path: "00 Dashboards/Projects Dashboard.md",
+    label: "项目",
+    description: "查看进行中的项目和想法。",
+    path: "00 仪表盘/项目仪表盘.md",
   },
   {
     icon: "columns-3",
-    label: "Boards",
-    description: "Open writing and project boards.",
-    path: "00 Dashboards/Boards.md",
+    label: "看板",
+    description: "打开写作与项目看板。",
+    path: "00 仪表盘/看板.md",
   },
 ];
 
 const NAV_ITEMS = [
-  { id: "home", icon: "home", label: "Home" },
-  { id: "today", icon: "sun", label: "Today" },
-  { id: "plan", icon: "calendar-range", label: "Plan" },
-  { id: "focus", icon: "crosshair", label: "Focus" },
-  { id: "review", icon: "line-chart", label: "Review" },
-  { id: "projects", icon: "folder-kanban", label: "Projects" },
-  { id: "people", icon: "users", label: "People" },
-  { id: "create", icon: "pen-tool", label: "Create" },
-  { id: "library", icon: "library", label: "Library" },
-  { id: "brain", icon: "brain", label: "Brain" },
+  { id: "home", icon: "home", label: "主页" },
+  { id: "today", icon: "sun", label: "今天" },
+  { id: "plan", icon: "calendar-range", label: "规划" },
+  { id: "focus", icon: "crosshair", label: "专注" },
+  { id: "review", icon: "line-chart", label: "回顾" },
+  { id: "projects", icon: "folder-kanban", label: "项目" },
+  { id: "people", icon: "users", label: "人物" },
+  { id: "create", icon: "pen-tool", label: "创作" },
+  { id: "library", icon: "library", label: "资料库" },
+  { id: "brain", icon: "brain", label: "知识图谱" },
   { id: "ai", icon: "sparkles", label: "AI" },
 ];
 
 const MODULES = {
   today: {
-    eyebrow: "Daily operating system",
-    title: "Today",
+    eyebrow: "每日运行系统",
+    title: "今天",
     description:
-      "Choose what matters, capture what happens, and close the day honestly.",
+      "选择重要的事，记录发生的事，并诚实地结束一天。",
     actions: [
       PERIOD_ACTIONS[0],
       ...CAPTURE_ACTIONS,
       {
         icon: "list-checks",
-        label: "Today’s tasks",
-        description: "Open the task recommendation dashboard.",
-        path: "00 Dashboards/Task Dashboard.md",
+        label: "今日任务",
+        description: "打开任务推荐仪表盘。",
+        path: "00 仪表盘/任务仪表盘.md",
       },
       {
         icon: "activity",
-        label: "Habits",
-        description: "Review current habit consistency.",
-        path: "00 Dashboards/Habit Canvas.md",
+        label: "习惯",
+        description: "查看当前习惯的坚持情况。",
+        path: "00 仪表盘/习惯画布.md",
       },
     ],
   },
   plan: {
-    eyebrow: "Connected time horizons",
-    title: "Plan",
+    eyebrow: "连接不同时间尺度",
+    title: "规划",
     description:
-      "Keep today, this week, and this quarter connected to the same direction.",
+      "让今天、本周和本季度始终指向同一个方向。",
     actions: [
       ...PERIOD_ACTIONS,
       {
         icon: "folder-kanban",
-        label: "Projects",
-        description: "Review active projects and quarter alignment.",
-        path: "00 Dashboards/Projects Dashboard.md",
+        label: "项目",
+        description: "检查进行中的项目是否与本季度一致。",
+        path: "00 仪表盘/项目仪表盘.md",
       },
       {
         icon: "clock-3",
-        label: "Ideal week",
-        description: "Check whether the plan has a place in time.",
-        path: "03 Planning/Ideal Week.md",
+        label: "理想一周",
+        description: "检查计划是否已经安排到具体时间。",
+        path: "03 规划/理想一周.md",
       },
     ],
   },
   focus: {
-    eyebrow: "Attention, not noise",
-    title: "Focus",
+    eyebrow: "关注重要事项",
+    title: "专注",
     description:
-      "See the commitments competing for attention and return to the work that matters.",
+      "看清正在争夺注意力的承诺，回到真正重要的工作。",
     actions: [
       {
         icon: "compass",
-        label: "Compass",
-        description: "Return to the whole-life overview.",
-        path: "00 Dashboards/Compass Dashboard.md",
+        label: "Compass 总览",
+        description: "返回完整生活总览。",
+        path: "00 仪表盘/Compass 总览.md",
       },
       {
         icon: "list-checks",
-        label: "Task recommendations",
-        description: "Review due, scheduled, priority, and discuss tasks.",
-        path: "00 Dashboards/Task Dashboard.md",
+        label: "任务建议",
+        description: "查看到期、计划、高优先级和待讨论任务。",
+        path: "00 仪表盘/任务仪表盘.md",
       },
       {
         icon: "folder-kanban",
-        label: "Project momentum",
-        description: "Find active projects that need a next action.",
-        path: "00 Dashboards/Projects Dashboard.md",
+        label: "项目进展",
+        description: "找出缺少下一步行动的进行中项目。",
+        path: "00 仪表盘/项目仪表盘.md",
       },
       {
         icon: "activity",
-        label: "Habit signals",
-        description: "See consistency alongside the days that explain it.",
-        path: "00 Dashboards/Habit Canvas.md",
+        label: "习惯信号",
+        description: "结合具体日期查看习惯的一致性。",
+        path: "00 仪表盘/习惯画布.md",
       },
     ],
   },
   review: {
-    eyebrow: "Evidence over memory",
-    title: "Review",
+    eyebrow: "用记录代替记忆",
+    title: "回顾",
     description:
-      "Look back across days and quarters before deciding what should change next.",
+      "先回看每日与季度记录，再决定下一步要改变什么。",
     actions: [
       {
         icon: "line-chart",
-        label: "Daily questions",
-        description: "Review effort scores and trends.",
-        path: "00 Dashboards/Daily Questions.md",
+        label: "每日问题",
+        description: "查看努力分数与趋势。",
+        path: "00 仪表盘/每日问题.md",
       },
       {
         icon: "activity",
-        label: "Habit canvas",
-        description: "Review streaks, gaps, and completion.",
-        path: "00 Dashboards/Habit Canvas.md",
+        label: "习惯画布",
+        description: "查看连续记录、中断和完成情况。",
+        path: "00 仪表盘/习惯画布.md",
       },
       PERIOD_ACTIONS[1],
       PERIOD_ACTIONS[2],
       PERIOD_ACTIONS[3],
       {
         icon: "compass",
-        label: "Whole-life review",
-        description: "Open the Compass dashboard and life wheel.",
-        path: "00 Dashboards/Compass Dashboard.md",
+        label: "完整生活回顾",
+        description: "打开 Compass 仪表盘和生命之轮。",
+        path: "00 仪表盘/Compass 总览.md",
       },
     ],
   },
   projects: {
-    eyebrow: "Outcomes with context",
-    title: "Projects",
+    eyebrow: "让成果保留上下文",
+    title: "项目",
     description:
-      "Keep outcomes, next actions, people, notes, and quarter commitments together.",
+      "把成果、下一步行动、人物、笔记和季度承诺放在一起。",
     actions: [
       {
         icon: "layout-dashboard",
-        label: "Projects dashboard",
-        description: "Review all active projects.",
-        path: "00 Dashboards/Projects Dashboard.md",
+        label: "项目仪表盘",
+        description: "查看所有进行中的项目。",
+        path: "00 仪表盘/项目仪表盘.md",
       },
       {
         icon: "columns-3",
-        label: "Projects board",
-        description: "Move ideas and projects through the pipeline.",
-        path: "04 Projects/Projects Board.md",
+        label: "项目看板",
+        description: "推动想法和项目在流程中前进。",
+        path: "04 项目/项目看板.md",
       },
       {
         icon: "lightbulb",
-        label: "Capture an idea",
-        description: "Add a project idea to the board.",
+        label: "记录想法",
+        description: "把项目想法添加到看板。",
         command: "quickadd:choice:lifeos-project-idea",
       },
       {
         icon: "folder-plus",
-        label: "New project",
-        description: "Create a project note with the canonical template.",
+        label: "新建项目",
+        description: "使用标准模板创建项目笔记。",
         command: "quickadd:choice:lifeos-new-project",
       },
       {
         icon: "calendar-range",
-        label: "Quarter plan",
-        description: "Check which projects serve this quarter.",
+        label: "季度计划",
+        description: "检查哪些项目服务于本季度目标。",
         command: "quickadd:choice:lifeos-quarterly",
       },
     ],
   },
   people: {
-    eyebrow: "Relationships with memory",
-    title: "People",
+    eyebrow: "带有记忆的人际关系",
+    title: "人物",
     description:
-      "Bring follow-ups, meeting context, and discussion items back to the relationship.",
+      "把跟进事项、会议背景和待讨论内容带回人物关系中。",
     actions: [
       {
         icon: "user-plus",
-        label: "New person",
-        description: "Create a private person note from its template.",
+        label: "新建人物",
+        description: "使用模板创建私密人物笔记。",
         command: "quickadd:choice:lifeos-new-person",
       },
       {
         icon: "messages-square",
-        label: "Discuss queue",
-        description: "Open tasks grouped by person and discussion context.",
-        path: "00 Dashboards/Task Dashboard.md",
+        label: "待讨论队列",
+        description: "打开按人物和讨论背景分组的任务。",
+        path: "00 仪表盘/任务仪表盘.md",
       },
       {
         icon: "search",
-        label: "Search people",
-        description: "Search the vault for a person or meeting context.",
+        label: "搜索人物",
+        description: "在 Vault 中搜索人物或会议背景。",
         command: "global-search:open",
       },
     ],
   },
   create: {
-    eyebrow: "Ideas into finished work",
-    title: "Create",
+    eyebrow: "把想法变成完成的作品",
+    title: "创作",
     description:
-      "Move ideas into newsletters, videos, articles, and course material without losing sources.",
+      "在不丢失资料来源的前提下，把想法发展成新闻通讯、视频、文章和课程内容。",
     actions: [
       {
         icon: "columns-3",
-        label: "Creative boards",
-        description: "Open every writing pipeline.",
-        path: "00 Dashboards/Boards.md",
+        label: "创作看板",
+        description: "打开全部写作流程。",
+        path: "00 仪表盘/看板.md",
       },
       ...CAPTURE_MENU_ACTIONS.filter((action) =>
         [
@@ -428,72 +428,72 @@ const MODULES = {
     ],
   },
   library: {
-    eyebrow: "Knowledge in context",
-    title: "Library",
+    eyebrow: "带有上下文的知识",
+    title: "资料库",
     description:
-      "Keep books, sources, reading, and ideas close to the work they inform.",
+      "让书籍、资料、阅读和想法始终靠近它们支持的工作。",
     actions: [
       {
         icon: "book-plus",
-        label: "New book note",
-        description: "Create a canonical book note.",
+        label: "新建书籍笔记",
+        description: "创建标准书籍笔记。",
         command: "quickadd:choice:lifeos-new-book",
       },
       {
         icon: "book-open-check",
-        label: "New study note",
-        description: "Create a reading study note.",
+        label: "新建学习笔记",
+        description: "创建阅读学习笔记。",
         command: "quickadd:choice:lifeos-new-study-note",
       },
       {
         icon: "book-open",
-        label: "Reading plan",
-        description: "Open the current reading plan.",
-        path: "09 Reading/Reading Plan.md",
+        label: "阅读计划",
+        description: "打开当前阅读计划。",
+        path: "09 阅读/阅读计划.md",
       },
       {
         icon: "search",
-        label: "Search the library",
-        description: "Search books, sources, and connected notes.",
+        label: "搜索资料库",
+        description: "搜索书籍、资料和关联笔记。",
         command: "global-search:open",
       },
       {
         icon: "pen-tool",
-        label: "Writing pipelines",
-        description: "Use the library in active creative work.",
-        path: "00 Dashboards/Boards.md",
+        label: "写作流程",
+        description: "在当前创作中使用资料库。",
+        path: "00 仪表盘/看板.md",
       },
     ],
   },
   ai: {
-    eyebrow: "Managed intelligence",
+    eyebrow: "受控的智能助手",
     title: "AI",
     description:
-      "Ask, review, and draft with the vault as context while every change stays visible.",
+      "以 Vault 为上下文进行提问、回顾和起草，并让每次修改都清晰可见。",
     actions: [
       {
         icon: "sparkles",
-        label: "Open assistant",
-        description: "Use the complete prompt library.",
-        path: "00 Dashboards/Assistant.md",
+        label: "打开 AI 助手",
+        description: "使用完整提示词库。",
+        path: "00 仪表盘/AI 助手.md",
       },
       {
         icon: "sun",
-        label: "What matters today",
-        description: "Open the Compass brief and daily context.",
-        path: "00 Dashboards/Compass Dashboard.md",
+        label: "今天最重要的事",
+        description: "打开 Compass 简报和今日背景。",
+        path: "00 仪表盘/Compass 总览.md",
       },
       {
         icon: "list-checks",
-        label: "Task triage",
-        description: "Open the task dashboard and its AI workflow.",
-        path: "00 Dashboards/Task Dashboard.md",
+        label: "整理任务",
+        description: "打开任务仪表盘及其 AI 工作流。",
+        path: "00 仪表盘/任务仪表盘.md",
       },
       {
         icon: "shield-check",
-        label: "Setup and permissions",
-        description: "Review AI, MCP, and backup readiness.",
-        path: "00 Dashboards/Setup.md",
+        label: "设置与权限",
+        description: "检查 AI、MCP 和备份是否准备就绪。",
+        path: "00 仪表盘/初始设置.md",
       },
     ],
   },
@@ -509,15 +509,15 @@ class LifeOSCaptureModal extends Modal {
     const root = this.contentEl;
     root.empty();
     root.addClass("life-os-capture-modal");
-    root.createEl("h2", { text: "Capture" });
+    root.createEl("h2", { text: "快速记录" });
     root.createEl("p", {
-      text: "Choose what this is. Life OS will route it to the right place.",
+      text: "选择内容类型，Life OS 会把它放到正确位置。",
     });
 
     const groups = [
-      { title: "Quick capture", actions: CAPTURE_MENU_ACTIONS.slice(0, 4) },
-      { title: "Ideas", actions: CAPTURE_MENU_ACTIONS.slice(4, 8) },
-      { title: "Create notes", actions: CAPTURE_MENU_ACTIONS.slice(8) },
+      { title: "快速记录", actions: CAPTURE_MENU_ACTIONS.slice(0, 4) },
+      { title: "想法", actions: CAPTURE_MENU_ACTIONS.slice(4, 8) },
+      { title: "新建笔记", actions: CAPTURE_MENU_ACTIONS.slice(8) },
     ];
     for (const group of groups) {
       const section = root.createDiv({ cls: "life-os-capture-section" });
@@ -662,16 +662,16 @@ class LifeOSHomeView extends ItemView {
     const words = identity.createDiv();
     words.createEl("h1", { text: "LIFE" });
     words.createEl("p", {
-      text: "See clearly. Choose deliberately. Live fully.",
+      text: "看清方向，主动选择，充实生活。",
     });
 
     hero.createDiv({
       cls: "life-os-date",
-      text: moment().format("dddd, D MMMM YYYY"),
+      text: moment().format("YYYY年M月D日 dddd"),
     });
 
     const status = hero.createDiv({ cls: "life-os-status-row" });
-    this.addStatus(status, "shield-check", "Local-first", true);
+    this.addStatus(status, "shield-check", "本地优先", true);
 
     const aiReady =
       this.pluginLoaded("agent-client") &&
@@ -680,55 +680,55 @@ class LifeOSHomeView extends ItemView {
     this.addStatus(
       status,
       "sparkles",
-      aiReady ? "AI tools loaded" : "AI unavailable",
+      aiReady ? "AI 工具已载入" : "AI 不可用",
       aiReady
     );
 
     const heroActions = hero.createDiv({ cls: "life-os-hero-actions" });
     this.addButton(heroActions, {
       icon: "calendar-days",
-      label: "Open today",
-      description: "Start with the current day.",
+      label: "打开今天",
+      description: "从今天开始。",
       primary: true,
       onClick: () =>
-        this.runCommand("quickadd:choice:lifeos-daily", "Today’s note"),
+        this.runCommand("quickadd:choice:lifeos-daily", "今日笔记"),
     });
 
     this.addButton(heroActions, {
       icon: "sparkles",
-      label: "Ask Life OS",
-      description: "Open the governed AI workspace.",
-      onClick: () => this.openPath("00 Dashboards/Assistant.md"),
+      label: "询问 Life OS",
+      description: "打开受规则约束的 AI 工作区。",
+      onClick: () => this.openPath("00 仪表盘/AI 助手.md"),
     });
 
     this.renderSetupBanner(shell);
     const overview = shell.createDiv({ cls: "life-os-home-overview" });
     const now = overview.createEl("section", { cls: "life-os-home-now" });
-    now.createEl("h2", { text: "Now" });
+    now.createEl("h2", { text: "现在" });
     this.renderTaskLive(now, { limit: 3, attention: true });
     if (this.visualEnabled()) {
       const card = overview.createEl("section", { cls: "life-os-brain-card" });
-      card.createEl("h2", { text: "Your connected notes" });
+      card.createEl("h2", { text: "你的关联笔记" });
       const host = card.createDiv({ cls: "life-os-brain-preview" });
       this.previewBrain = new LifeOSBrainRenderer(this.app, host, true);
       this.previewBrain.brainGeometry = this.previewGeometry;
       this.addChild(this.previewBrain);
-      this.addButton(card, { icon: "brain", label: "Explore Brain", description: "Open the full graph in this dashboard.", onClick: () => { this.activeScreen = "brain"; this.render(); } });
+      this.addButton(card, { icon: "brain", label: "探索知识图谱", description: "在仪表盘中打开完整图谱。", onClick: () => { this.activeScreen = "brain"; this.render(); } });
     }
 
     this.renderActionSection(
       shell,
-      "Capture",
-      "Put something into the system without breaking your flow.",
+      "快速记录",
+      "不中断当前节奏，快速把内容放入系统。",
       CAPTURE_ACTIONS,
       (action) => this.runCommand(action.command, action.label)
     );
     this.renderPlanLive(shell);
     const signals = shell.createEl("section", { cls: "life-os-signals" });
     const model = this.getAnalytics();
-    signals.createEl("h2", { text: "Recorded signals" });
-    signals.createEl("p", { text: `${model.scored} scored days in ${this.analyticsDays} days · ${model.average === null ? "No effort scores yet" : `${model.average.toFixed(1)} / 10 mean daily effort`}. Missing days are not zero.${this.includeExamples ? " Samples included." : " Samples excluded."}` });
-    this.addButton(signals, { icon: "chart-line", label: "Explore Review", description: "Effort, habit rhythm, and life areas.", onClick: () => { this.activeScreen = "review"; this.render(); } });
+    signals.createEl("h2", { text: "记录信号" });
+    signals.createEl("p", { text: `${this.analyticsDays} 天内有 ${model.scored} 天完成评分 · ${model.average === null ? "尚无努力分数" : `平均努力分数 ${model.average.toFixed(1)} / 10`}。缺失日期不按零分计算。${this.includeExamples ? "已包含示例。" : "已排除示例。"}` });
+    this.addButton(signals, { icon: "chart-line", label: "查看回顾", description: "查看努力、习惯节奏和生活领域。", onClick: () => { this.activeScreen = "review"; this.render(); } });
   }
 
   isExample(data) {
@@ -789,20 +789,20 @@ class LifeOSHomeView extends ItemView {
     const section = parent.createEl("section", { cls: "life-os-analytics" });
     const heading = section.createDiv({ cls: "life-os-analytics-heading" });
     const copy = heading.createDiv();
-    copy.createEl("h2", { text: "Your life, in view" });
+    copy.createEl("h2", { text: "一览你的生活" });
     copy.createEl("p", { text: this.includeExamples
-      ? "Sample notes included. These charts may contain demonstration data."
-      : "Recorded effort and habits. Blank days mean no data, not zero." });
+      ? "已包含示例笔记，这些图表可能含有演示数据。"
+      : "这里显示已记录的努力和习惯。空白日期表示没有数据，并非零分。" });
     const controls = heading.createDiv({ cls: "life-os-chart-controls" });
     for (const count of [7, 30, 90]) {
       const button = controls.createEl("button", {
-        text: `${count} days`, attr: { "aria-pressed": String(this.analyticsDays === count) },
+        text: `${count} 天`, attr: { "aria-pressed": String(this.analyticsDays === count) },
       });
       button.type = "button";
       button.addEventListener("click", () => { this.analyticsDays = count; this.render(); });
     }
     const sample = controls.createEl("button", {
-      text: this.includeExamples ? "Samples on" : "Include samples",
+      text: this.includeExamples ? "示例：开" : "包含示例",
       attr: { "aria-pressed": String(this.includeExamples) },
     });
     sample.type = "button";
@@ -810,12 +810,12 @@ class LifeOSHomeView extends ItemView {
 
     const grid = section.createDiv({ cls: "life-os-chart-grid" });
     const effort = grid.createDiv({ cls: "life-os-chart-card life-os-effort-chart" });
-    effort.createEl("h3", { text: "Daily effort" });
-    effort.createEl("strong", { cls: "life-os-chart-number", text: model.average === null ? "No scores yet" : `${model.average.toFixed(1)} / 10` });
-    effort.createEl("p", { text: `${model.scored} scored days · mean of recorded daily questions` });
-    const plot = effort.createDiv({ cls: "life-os-effort-plot", attr: { role: "list", "aria-label": "Daily effort scores" } });
+    effort.createEl("h3", { text: "每日努力" });
+    effort.createEl("strong", { cls: "life-os-chart-number", text: model.average === null ? "尚无分数" : `${model.average.toFixed(1)} / 10` });
+    effort.createEl("p", { text: `${model.scored} 天完成评分 · 已记录每日问题的平均值` });
+    const plot = effort.createDiv({ cls: "life-os-effort-plot", attr: { role: "list", "aria-label": "每日努力分数" } });
     for (const day of model.days) {
-      const label = `${day.date}: ${day.score === null ? "No score recorded" : `${day.score.toFixed(1)} out of 10`}`;
+      const label = `${day.date}: ${day.score === null ? "未记录分数" : `${day.score.toFixed(1)} / 10`}`;
       const column = plot.createDiv({ cls: "life-os-effort-column", attr: { role: "listitem", "aria-label": label, title: label } });
       column.createDiv({ cls: day.score === null ? "life-os-effort-bar is-missing" : "life-os-effort-bar",
         attr: { style: `height:${day.score === null ? 2 : day.score * 10}%` } });
@@ -831,21 +831,21 @@ class LifeOSHomeView extends ItemView {
     axis.createSpan({ text: model.days[0].date });
     axis.createSpan({ text: model.days[model.days.length - 1].date });
     const details = effort.createEl("details", { cls: "life-os-chart-details" });
-    details.createEl("summary", { text: "Read daily values" });
+    details.createEl("summary", { text: "查看每日数值" });
     const table = details.createEl("table", { cls: "life-os-chart-table" });
     const header = table.createEl("thead").createEl("tr");
-    header.createEl("th", { text: "Date", attr: { scope: "col" } });
-    header.createEl("th", { text: "Effort (1 to 10)", attr: { scope: "col" } });
+    header.createEl("th", { text: "日期", attr: { scope: "col" } });
+    header.createEl("th", { text: "努力程度（1 到 10）", attr: { scope: "col" } });
     const body = table.createEl("tbody");
     for (const day of model.days) {
       const row = body.createEl("tr");
       row.createEl("th", { text: day.date, attr: { scope: "row" } });
-      row.createEl("td", { text: day.score === null ? "Not recorded" : day.score.toFixed(1) });
+      row.createEl("td", { text: day.score === null ? "未记录" : day.score.toFixed(1) });
     }
 
     const wheel = grid.createDiv({ cls: "life-os-chart-card" });
-    wheel.createEl("h3", { text: "Life areas" });
-    wheel.createEl("p", { text: model.retreat ? `Latest scored retreat: ${this.getFileTitle(model.retreat)}` : "Your next retreat will bring this view to life." });
+    wheel.createEl("h3", { text: "生活领域" });
+    wheel.createEl("p", { text: model.retreat ? `最近评分的季度回顾： ${this.getFileTitle(model.retreat)}` : "完成下一次季度回顾后，这里会显示数据。" });
     for (const [key, value] of model.wheel) {
       const row = wheel.createDiv({ cls: "life-os-wheel-row" });
       row.createSpan({ text: this.formatPropertyLabel(key) });
@@ -853,12 +853,12 @@ class LifeOSHomeView extends ItemView {
       track.createDiv({ cls: "life-os-wheel-fill", attr: { style: `width:${value * 10}%` } });
       row.createSpan({ text: `${value}/10` });
     }
-    if (!model.wheel.length) wheel.createDiv({ cls: "life-os-live-empty", text: "No life-area scores recorded. Open Retreat from Plan to add your own." });
-    if (model.retreat) this.addButton(wheel, { icon: "book-open", label: "Open scored retreat", description: "See the source of these life-area scores.", onClick: () => this.openPath(model.retreat.path) });
+    if (!model.wheel.length) wheel.createDiv({ cls: "life-os-live-empty", text: "还没有生活领域评分。请从“规划”打开“季度回顾”并填写评分。" });
+    if (model.retreat) this.addButton(wheel, { icon: "book-open", label: "打开已评分的季度回顾", description: "查看生活领域分数的来源。", onClick: () => this.openPath(model.retreat.path) });
 
     const habits = grid.createDiv({ cls: "life-os-chart-card life-os-habit-chart" });
-    habits.createEl("h3", { text: "Habit rhythm" });
-    habits.createEl("p", { text: "Filled: done · muted: unchecked · outlined: no record. Hover a day for details." });
+    habits.createEl("h3", { text: "习惯节奏" });
+    habits.createEl("p", { text: "实心表示完成，浅色表示未完成，边框表示无记录。悬停日期可查看详情。" });
     const matrix = habits.createDiv({ cls: "life-os-habit-matrix" });
     for (const key of model.habits) {
       const row = matrix.createDiv({ cls: "life-os-habit-row" });
@@ -869,24 +869,24 @@ class LifeOSHomeView extends ItemView {
         const value = day.data?.[key];
         if (typeof value === "boolean") recorded += 1;
         if (value === true) done += 1;
-        const label = `${day.date}, ${this.formatPropertyLabel(key)}: ${value === true ? "Done" : value === false ? "Unchecked" : "No record"}`;
+        const label = `${day.date}, ${this.formatPropertyLabel(key)}: ${value === true ? "已完成" : value === false ? "未完成" : "无记录"}`;
         cells.createSpan({ cls: `life-os-habit-cell ${value === true ? "is-done" : value === false ? "is-open" : "is-missing"}`,
           attr: { title: label, "aria-label": label, role: "img" } });
       }
-      row.createSpan({ text: recorded ? `${done}/${recorded}` : "No data" });
+      row.createSpan({ text: recorded ? `${done}/${recorded}` : "无数据" });
     }
-    if (!model.habits.length) habits.createDiv({ cls: "life-os-live-empty", text: "Add your habits in Configure to begin." });
+    if (!model.habits.length) habits.createDiv({ cls: "life-os-live-empty", text: "请先在配置中添加习惯。" });
   }
 
   renderRail(parent) {
     const rail = parent.createEl("aside", {
       cls: "life-os-rail",
-      attr: { "aria-label": "Life OS navigation" },
+      attr: { "aria-label": "Life OS 导航" },
     });
 
     const brand = rail.createEl("button", {
       cls: "life-os-rail-brand",
-      attr: { "aria-label": "Open Life OS home" },
+      attr: { "aria-label": "打开 Life OS 主页" },
     });
     brand.type = "button";
     const mark = brand.createSpan();
@@ -923,7 +923,7 @@ class LifeOSHomeView extends ItemView {
     const local = rail.createDiv({ cls: "life-os-rail-foot" });
     const localIcon = local.createSpan();
     setIcon(localIcon, "hard-drive");
-    local.createSpan({ text: "Local vault" });
+    local.createSpan({ text: "本地 Vault" });
   }
 
   renderTopbar(parent) {
@@ -933,36 +933,36 @@ class LifeOSHomeView extends ItemView {
     context.createEl("strong", { text: this.getScreenTitle() });
 
     const actions = topbar.createDiv({ cls: "life-os-topbar-actions" });
-    this.addTopbarButton(actions, "search", "Search", () => {
-      this.runCommand("global-search:open", "Search");
+    this.addTopbarButton(actions, "search", "搜索", () => {
+      this.runCommand("global-search:open", "搜索");
     });
-    this.addTopbarButton(actions, "settings-2", "Configure", () => {
-      void this.openPath("Meta/Compass Config.md");
+    this.addTopbarButton(actions, "settings-2", "配置", () => {
+      void this.openPath("系统/Compass 配置.md");
     });
     const display = actions.createEl("details", { cls: "life-os-display-options" });
-    display.createEl("summary", { text: "View" });
+    display.createEl("summary", { text: "视图" });
     const options = display.createDiv();
-    options.createEl("p", { text: "This view only. No vault settings changed." });
-    const density = options.createEl("button", { text: this.compactLayout ? "Use comfortable spacing" : "Use compact spacing" });
+    options.createEl("p", { text: "这些选项只影响当前视图，不会修改 Vault 设置。" });
+    const density = options.createEl("button", { text: this.compactLayout ? "使用舒适间距" : "使用紧凑间距" });
     density.type = "button";
     this.registerDomEvent(density, "click", () => { this.compactLayout = !this.compactLayout; this.render(true); });
-    const visuals = options.createEl("button", { text: this.showVisuals ? "Hide optional visuals" : "Show optional visuals" });
+    const visuals = options.createEl("button", { text: this.showVisuals ? "隐藏可选图表" : "显示可选图表" });
     visuals.type = "button";
     this.registerDomEvent(visuals, "click", () => { this.showVisuals = !this.showVisuals; this.render(true); });
     if (["home", "today", "focus", "projects", "people", "create", "library", "ai"].includes(this.activeScreen)) {
-      const local = options.createEl("button", { text: this.visualOptions[this.activeScreen] === false ? "Show this module's visual" : "Hide this module's visual" });
+      const local = options.createEl("button", { text: this.visualOptions[this.activeScreen] === false ? "显示本模块图表" : "隐藏本模块图表" });
       local.type = "button";
       this.registerDomEvent(local, "click", () => { this.visualOptions[this.activeScreen] = this.visualOptions[this.activeScreen] === false; this.render(true); });
     }
-    const label = options.createEl("label", { text: "Items per list " });
-    const limit = label.createEl("select", { attr: { "aria-label": "Items per list" } });
+    const label = options.createEl("label", { text: "每个列表显示数量 " });
+    const limit = label.createEl("select", { attr: { "aria-label": "每个列表显示数量" } });
     for (const count of [3, 6, 12]) limit.createEl("option", { text: String(count), attr: { value: String(count) } });
     limit.value = String(this.itemLimit);
     this.registerDomEvent(limit, "change", () => { this.itemLimit = Number(limit.value); this.render(true); });
-    const reset = options.createEl("button", { text: "Restore view defaults" });
+    const reset = options.createEl("button", { text: "恢复默认视图" });
     reset.type = "button";
     this.registerDomEvent(reset, "click", () => { this.showVisuals = true; this.visualOptions = {}; this.itemLimit = 6; this.compactLayout = false; this.focusGroup = "all"; this.libraryStatus = "all"; this.libraryType = "all"; this.pipelinePath = null; this.render(true); });
-    this.addTopbarButton(actions, "plus", "Capture", () => {
+    this.addTopbarButton(actions, "plus", "快速记录", () => {
       this.plugin.openCapture();
     }, true);
   }
@@ -984,7 +984,7 @@ class LifeOSHomeView extends ItemView {
   }
 
   getScreenTitle() {
-    return NAV_ITEMS.find((item) => item.id === this.activeScreen)?.label || "Home";
+    return NAV_ITEMS.find((item) => item.id === this.activeScreen)?.label || "主页";
   }
 
   renderModule(shell) {
@@ -1010,8 +1010,8 @@ class LifeOSHomeView extends ItemView {
     if (this.activeScreen === "ai") this.renderSystemSummary(shell);
     this.renderActionSection(
       shell,
-      "Open and act",
-      "Every control below opens a real note, dashboard, or capture workflow.",
+      "打开并操作",
+      "下方每个控件都会打开真实笔记、仪表盘或记录流程。",
       module.actions,
       (action) => {
         if (action.command) {
@@ -1027,10 +1027,10 @@ class LifeOSHomeView extends ItemView {
       const icon = note.createSpan();
       setIcon(icon, "shield-check");
       const copy = note.createDiv();
-      copy.createEl("strong", { text: "AI-managed, human-authorized" });
+      copy.createEl("strong", { text: "AI 协助，用户授权" });
       copy.createEl("p", {
         text:
-          "Life OS can retrieve, summarize, and draft. Review context before sending. Human approval is the operating policy, not a guarantee enforced across every connected tool.",
+          "Life OS 可以检索、总结和起草。发送前请检查上下文。人工批准是操作规则，但并非所有连接工具都会从技术上强制执行。",
       });
     }
   }
@@ -1040,28 +1040,28 @@ class LifeOSHomeView extends ItemView {
     const section = parent.createEl("section", { cls: "life-os-today-live" });
     const heading = section.createDiv({ cls: "life-os-today-heading" });
     const copy = heading.createDiv();
-    copy.createEl("h2", { text: "Today at a glance" });
+    copy.createEl("h2", { text: "今日概览" });
     copy.createEl("p", {
-      text: "A private view of today’s properties. Journal text stays out of this screen.",
+      text: "仅私密显示今天的属性，日记正文不会出现在此页面。",
     });
 
     if (!data.exists) {
-      heading.createSpan({ cls: "life-os-progress-chip", text: "Not started" });
+      heading.createSpan({ cls: "life-os-progress-chip", text: "尚未开始" });
       const empty = section.createDiv({ cls: "life-os-today-empty" });
       const icon = empty.createSpan();
       setIcon(icon, "sunrise");
       const emptyCopy = empty.createDiv();
-      emptyCopy.createEl("strong", { text: "Create today’s note" });
+      emptyCopy.createEl("strong", { text: "创建今天的笔记" });
       emptyCopy.createEl("p", {
-        text: "Life OS will use your configured questions and habits.",
+        text: "Life OS 将使用你配置的每日问题和习惯。",
       });
       this.addButton(empty, {
         icon: "plus",
-        label: "Start today",
-        description: "Create or open today’s daily note.",
+        label: "开始今天",
+        description: "创建或打开今天的每日笔记。",
         primary: true,
         onClick: () =>
-          this.runCommand("quickadd:choice:lifeos-daily", "Today’s note"),
+          this.runCommand("quickadd:choice:lifeos-daily", "今日笔记"),
       });
       return;
     }
@@ -1069,26 +1069,26 @@ class LifeOSHomeView extends ItemView {
     const completed = data.questionRecorded + data.habitRecorded;
     const total = data.questions.length + data.habits.length;
     if (this.visualEnabled() && total) {
-      const meter = section.createEl("progress", { cls: "life-os-checkin-meter", attr: { max: String(total), value: String(completed), "aria-label": `${completed} of ${total} check-in properties recorded, not a completion score` } });
-      meter.textContent = `${completed}/${total} recorded`;
+      const meter = section.createEl("progress", { cls: "life-os-checkin-meter", attr: { max: String(total), value: String(completed), "aria-label": `已记录 ${total} 项中的 ${completed} 项，这不是完成度评分` } });
+      meter.textContent = `已记录 ${completed}/${total}`;
     }
     heading.createSpan({
       cls: "life-os-progress-chip is-active",
-      text: total ? `${completed} of ${total} checked in` : "Ready",
+      text: total ? `已填写 ${completed}/${total}` : "已就绪",
     });
 
     const grid = section.createDiv({ cls: "life-os-today-grid" });
     this.renderTodayList(
       grid,
-      "Daily questions",
-      "Rate effort from 1 to 10.",
+      "每日问题",
+      "请按 1 到 10 分评价投入程度。",
       data.questions,
       "line-chart"
     );
     this.renderTodayList(
       grid,
-      "Habits",
-      "A signal, never a judgment.",
+      "习惯",
+      "这只是信号，不是评价。",
       data.habits,
       "activity"
     );
@@ -1096,19 +1096,19 @@ class LifeOSHomeView extends ItemView {
     const actions = section.createDiv({ cls: "life-os-today-actions" });
     this.addButton(actions, {
       icon: "file-text",
-      label: "Open daily note",
-      description: "See the complete context for today.",
+      label: "打开每日笔记",
+      description: "查看今天的完整背景。",
       onClick: () => this.openPath(data.path),
     });
     this.addButton(actions, {
       icon: "message-circle-question",
-      label: "Daily questions",
-      description: "Run the guided evening check-in.",
+      label: "每日问题",
+      description: "运行晚间引导复盘。",
       primary: true,
       onClick: () =>
         this.runCommand(
-          "templater-obsidian:Templates/Daily Questions Prompt.md",
-          "Daily questions"
+          "templater-obsidian:模板/每日问题提示.md",
+          "每日问题"
         ),
     });
   }
@@ -1159,8 +1159,8 @@ class LifeOSHomeView extends ItemView {
           display: recorded
             ? `${result.value}/10`
             : result.state === "invalid"
-              ? "Invalid value"
-              : "Not rated",
+              ? "数值无效"
+              : "未评分",
         };
       })
       .filter((question) => question.key);
@@ -1177,12 +1177,12 @@ class LifeOSHomeView extends ItemView {
           complete: state === "done",
           display:
             state === "done"
-              ? "Done"
+              ? "已完成"
               : state === "unchecked"
-                ? "Unchecked"
+                ? "未完成"
                 : state === "invalid"
-                  ? "Invalid value"
-                  : "Not recorded",
+                  ? "数值无效"
+                  : "未记录",
         };
       });
 
@@ -1234,32 +1234,32 @@ class LifeOSHomeView extends ItemView {
 
     const collections = {
       focus: {
-        title: "Active commitments",
-        description: "Projects currently asking for attention.",
+        title: "进行中的承诺",
+        description: "当前需要关注的项目。",
         types: ["project"],
         icon: "crosshair",
-        empty: "No active projects yet.",
+        empty: "还没有进行中的项目。",
       },
       projects: {
-        title: "Project pulse",
-        description: "Active project notes from your canonical project folder.",
+        title: "项目动态",
+        description: "标准项目文件夹中的进行中项目笔记。",
         types: ["project"],
         icon: "folder-kanban",
-        empty: "No active project notes yet.",
+        empty: "还没有进行中的项目笔记。",
       },
       people: {
-        title: "People directory",
-        description: "Relationship notes, kept local and opened in place.",
+        title: "人物目录",
+        description: "人物关系笔记保存在本地，并在原位置打开。",
         types: ["person"],
         icon: "users",
-        empty: "No people notes yet.",
+        empty: "还没有人物笔记。",
       },
       library: {
-        title: "Library shelf",
-        description: "Typed library notes, including finished books and sources. Samples excluded.",
+        title: "资料库书架",
+        description: "按类型整理的资料库笔记，包括读完的书和资料来源，不含示例。",
         types: ["book"],
         icon: "library",
-        empty: "No typed library notes yet. Add a book or source with a type property.",
+        empty: "还没有分类的资料库笔记。请添加带 type 属性的书籍或资料。",
       },
     };
     const collection = collections[this.activeScreen];
@@ -1273,30 +1273,30 @@ class LifeOSHomeView extends ItemView {
     const horizons = [
       {
         icon: "sun",
-        label: "Today",
+        label: "今天",
         period: moment().format("D MMM"),
         path: `${paths.daily}/${moment().format("YYYY-MM-DD")}.md`,
         command: "quickadd:choice:lifeos-daily",
       },
       {
         icon: "calendar-range",
-        label: "This week",
+        label: "本周",
         period: moment().format("[Week] ww"),
         path: `${paths.weekly}/${moment().format("gggg-[W]ww")}.md`,
         command: "quickadd:choice:lifeos-weekly",
       },
       {
         icon: "compass",
-        label: "This quarter",
+        label: "本季度",
         period: moment().format("YYYY-[Q]Q"),
         path: `${paths.quarterly}/${moment().format("YYYY-[Q]Q")}.md`,
         command: "quickadd:choice:lifeos-quarterly",
       },
       {
         icon: "tent-tree",
-        label: "Retreat",
+        label: "季度回顾",
         period: moment().format("YYYY-[Q]Q"),
-        path: `${paths.retreats}/${moment().format("YYYY-[Q]Q")} Personal Retreat.md`,
+        path: `${paths.retreats}/${moment().format("YYYY-[Q]Q")} 季度个人回顾.md`,
         command: "quickadd:choice:lifeos-retreat",
       },
     ];
@@ -1305,7 +1305,7 @@ class LifeOSHomeView extends ItemView {
       section,
       "Connected horizons",
       "Each layer is ready when its canonical note exists.",
-      `${horizons.filter((item) => this.fileExists(item.path)).length} of ${horizons.length} notes created`
+      `${horizons.filter((item) => this.fileExists(item.path)).length} of ${horizons.length} 篇笔记 created`
     );
     const grid = section.createDiv({ cls: "life-os-horizon-grid" });
     for (const horizon of horizons) {
@@ -1319,7 +1319,7 @@ class LifeOSHomeView extends ItemView {
       copy.createSpan({ text: horizon.period });
       button.createSpan({
         cls: ready ? "life-os-record-status is-ready" : "life-os-record-status",
-        text: ready ? "Open note" : "Create note",
+        text: ready ? "打开笔记" : "创建笔记",
       });
       this.registerDomEvent(button, "click", () => {
         if (ready) {
@@ -1337,15 +1337,15 @@ class LifeOSHomeView extends ItemView {
     const month = new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth() + (this.calendarOffset || 0), 1, 12));
     const section = parent.createEl("section", { cls: "life-os-calendar" });
     const toolbar = section.createDiv({ cls: "life-os-calendar-toolbar" });
-    toolbar.createEl("h2", { text: month.toLocaleDateString(undefined, { month: "long", year: "numeric", timeZone: "UTC" }) });
-    for (const [label, delta] of [["Previous month", -1], ["This month", 0], ["Next month", 1]]) {
+    toolbar.createEl("h2", { text: month.toLocaleDateString("zh-CN", { month: "long", year: "numeric", timeZone: "UTC" }) });
+    for (const [label, delta] of [["上个月", -1], ["本月", 0], ["下个月", 1]]) {
       const button = toolbar.createEl("button", { text: label });
       button.type = "button";
       this.registerDomEvent(button, "click", () => { this.calendarOffset = delta ? (this.calendarOffset || 0) + delta : 0; this.render(); });
     }
     const grid = section.createDiv({ cls: "life-os-calendar-grid" });
     const firstDay = moment.localeData?.().firstDayOfWeek?.() ?? 1;
-    for (let i = 0; i < 7; i++) grid.createDiv({ cls: "life-os-calendar-weekday", text: new Date(Date.UTC(2026, 0, 4 + (firstDay + i) % 7)).toLocaleDateString(undefined, { weekday: "short", timeZone: "UTC" }) });
+    for (let i = 0; i < 7; i++) grid.createDiv({ cls: "life-os-calendar-weekday", text: new Date(Date.UTC(2026, 0, 4 + (firstDay + i) % 7)).toLocaleDateString("zh-CN", { weekday: "short", timeZone: "UTC" }) });
     const offset = (month.getUTCDay() - firstDay + 7) % 7;
     const folder = this.getConfiguredFolders().daily;
     for (let i = 0; i < 42; i++) {
@@ -1353,12 +1353,12 @@ class LifeOSHomeView extends ItemView {
       const iso = date.toISOString().slice(0, 10);
       const path = `${folder}/${iso}.md`;
       const exists = this.fileExists(path);
-      const button = grid.createEl("button", { cls: `life-os-calendar-day${exists ? " is-present" : ""}${date.getUTCMonth() !== month.getUTCMonth() ? " is-outside" : ""}`, text: String(date.getUTCDate()), attr: { "aria-label": `${iso}: ${exists ? "Open daily note" : iso === today ? "Create today's note" : "No daily note"}`, ...(iso === today ? { "aria-current": "date" } : {}) } });
+      const button = grid.createEl("button", { cls: `life-os-calendar-day${exists ? " is-present" : ""}${date.getUTCMonth() !== month.getUTCMonth() ? " is-outside" : ""}`, text: String(date.getUTCDate()), attr: { "aria-label": `${iso}: ${exists ? "打开每日笔记" : iso === today ? "创建今天的笔记" : "没有每日笔记"}`, ...(iso === today ? { "aria-current": "date" } : {}) } });
       button.type = "button";
       button.disabled = !exists && iso !== today;
-      this.registerDomEvent(button, "click", () => exists ? void this.openPath(path) : this.runCommand("quickadd:choice:lifeos-daily", "Today’s note"));
+      this.registerDomEvent(button, "click", () => exists ? void this.openPath(path) : this.runCommand("quickadd:choice:lifeos-daily", "今日笔记"));
     }
-    section.createEl("p", { cls: "life-os-calendar-help", text: "Highlighted days have notes. Open an existing day, or create today. Other empty days are disabled. No entries are generated automatically." });
+    section.createEl("p", { cls: "life-os-calendar-help", text: "高亮日期已有笔记。可以打开现有日期或创建今天的笔记，其他空白日期不可点击，系统不会自动生成记录。" });
   }
 
   renderReviewLive(parent) {
@@ -1389,7 +1389,7 @@ class LifeOSHomeView extends ItemView {
       section,
       "Seven-day signal",
       "Property coverage only. Your journal words remain private.",
-      `${activeDays} daily notes`
+      `${activeDays} daily 篇笔记`
     );
     const grid = section.createDiv({ cls: "life-os-week-grid" });
     for (const day of days) {
@@ -1398,7 +1398,7 @@ class LifeOSHomeView extends ItemView {
       });
       card.createEl("strong", { text: day.label });
       card.createSpan({
-        text: day.exists ? `${day.recorded}/${day.total} recorded` : "No note",
+        text: day.exists ? `已记录 ${day.recorded}/${day.total}` : "没有笔记",
       });
       const meter = card.createDiv({ cls: "life-os-day-meter" });
       const ratio = day.total ? day.recorded / day.total : 0;
@@ -1411,18 +1411,18 @@ class LifeOSHomeView extends ItemView {
 
   renderPipelineLive(parent) {
     const pipelines = [
-      { type: "newsletter", label: "Newsletters", icon: "mail", path: "06 Writing/Newsletters/Newsletter Board.md" },
-      { type: "youtube-script", label: "Videos", icon: "video", path: "06 Writing/YouTube Scripts/YouTube Board.md" },
-      { type: "article", label: "Articles", icon: "newspaper", path: "06 Writing/Articles/Article Board.md" },
-      { type: "course-lesson", label: "Courses", icon: "graduation-cap", path: "06 Writing/Course Content/Course Board.md" },
+      { type: "newsletter", label: "新闻通讯", icon: "mail", path: "06 写作/新闻通讯/新闻通讯看板.md" },
+      { type: "youtube-script", label: "视频", icon: "video", path: "06 写作/视频脚本/视频看板.md" },
+      { type: "article", label: "文章", icon: "newspaper", path: "06 写作/文章/文章看板.md" },
+      { type: "course-lesson", label: "课程", icon: "graduation-cap", path: "06 写作/课程内容/课程看板.md" },
     ];
     const files = this.app.vault.getMarkdownFiles();
     const section = parent.createEl("section", { cls: "life-os-pipeline-live" });
     this.renderLiveHeading(
       section,
       "Creative studio",
-      "Every pipeline stays backed by its Markdown notes and Kanban board.",
-      `${pipelines.reduce((sum, pipeline) => sum + this.countType(files, pipeline.type), 0)} notes`
+      "Every pipeline stays backed by its Markdown 篇笔记 and Kanban board.",
+      `${pipelines.reduce((sum, pipeline) => sum + this.countType(files, pipeline.type), 0)} 篇笔记`
     );
     const grid = section.createDiv({ cls: "life-os-pipeline-grid" });
     for (const pipeline of pipelines) {
@@ -1432,7 +1432,7 @@ class LifeOSHomeView extends ItemView {
       setIcon(icon, pipeline.icon);
       const copy = button.createDiv();
       copy.createEl("strong", { text: pipeline.label });
-      copy.createSpan({ text: `${this.countType(files, pipeline.type)} notes` });
+      copy.createSpan({ text: `${this.countType(files, pipeline.type)} 篇笔记` });
       const selected = (this.pipelinePath || pipelines[0].path) === pipeline.path;
       if (this.visualEnabled()) button.setAttribute("aria-pressed", String(selected));
       this.registerDomEvent(button, "click", () => {
@@ -1446,13 +1446,13 @@ class LifeOSHomeView extends ItemView {
         const lanes = cache?.headings?.filter(heading => heading.level === 2) || [];
         const flow = section.createDiv({ cls: "life-os-workflow-lanes" });
         flow.createEl("h3", { text: pipeline.label });
-        this.addButton(flow, { icon: "kanban", label: "Open board", description: "Edit cards in the original board.", onClick: () => this.openPath(pipeline.path) });
+        this.addButton(flow, { icon: "kanban", label: "打开看板", description: "在原看板中编辑卡片。", onClick: () => this.openPath(pipeline.path) });
         if (!file || !cache || !lanes.length || !Array.isArray(cache.listItems)) {
-          flow.createEl("p", { text: "Board lane counts unavailable. Open the board to inspect its workflow." });
+          flow.createEl("p", { text: "无法取得看板泳道数量，请打开看板检查工作流。" });
           continue;
         }
         if (this.isExample(this.getFrontmatter(file))) {
-          flow.createEl("p", { text: "Sample board excluded from workflow counts." });
+          flow.createEl("p", { text: "工作流统计已排除示例看板。" });
           continue;
         }
         for (let i = 0; i < lanes.length; i++) {
@@ -1469,9 +1469,9 @@ class LifeOSHomeView extends ItemView {
             item.type = "button";
             this.registerDomEvent(item, "click", () => void this.openPath(task.path, task.line));
           }
-          laneBox.createEl("p", { text: !this.taskSnapshot ? "Loading open items" : this.taskSnapshot.error ? "Open-item index unavailable" : `${Math.min(tasks.length, 3)} of ${tasks.length} indexed open items shown${this.taskSnapshot.state === "partial" ? " · partial index" : ""}` });
+          laneBox.createEl("p", { text: !this.taskSnapshot ? "正在载入未完成事项" : this.taskSnapshot.error ? "未完成事项索引不可用" : `已显示 ${tasks.length} 项中的 ${Math.min(tasks.length, 3)} 项${this.taskSnapshot.state === "partial" ? " · 部分索引" : ""}` });
         }
-        flow.createEl("p", { text: "Checkbox items by actual board heading, including checked items. Not a completion percentage." });
+        flow.createEl("p", { text: "按实际看板标题统计复选框项目，包括已勾选项目；此数字不是完成百分比。" });
       }
     }
   }
@@ -1492,70 +1492,70 @@ class LifeOSHomeView extends ItemView {
     const restConfigured = restLoaded && Boolean(restSettings.apiKey);
     const prompts = this.app.vault
       .getMarkdownFiles()
-      .filter((file) => file.path.startsWith("Prompts/")).length;
+      .filter((file) => file.path.startsWith("提示词/")).length;
     const checks = [
       {
         icon: "bot",
         label: "Agent Client",
         ready: agentConfigured,
-        state: agentConfigured ? "Configured" : agentLoaded ? "Installed" : "Unavailable",
+        state: agentConfigured ? "已配置" : agentLoaded ? "已安装" : "不可用",
         detail: agentConfigured
-          ? `${sessionCount} local ${sessionCount === 1 ? "session" : "sessions"}`
-          : "In-vault assistant interface",
+          ? `${sessionCount} 个本地会话`
+          : "Vault 内的助手界面",
       },
       {
         icon: "plug-zap",
-        label: "Local MCP bridge",
+        label: "本地 MCP 桥接",
         ready: restConfigured,
-        state: restConfigured ? "Configured" : restLoaded ? "Installed" : "Unavailable",
-        detail: restConfigured ? "Local server key present" : "Local tool connection",
+        state: restConfigured ? "已配置" : restLoaded ? "已安装" : "不可用",
+        detail: restConfigured ? "已设置本地服务器密钥" : "本地工具连接",
       },
       {
         icon: "library",
-        label: "Prompt library",
+        label: "提示词库",
         ready: prompts > 0,
-        state: prompts > 0 ? "Available" : "Unavailable",
-        detail: `${prompts} governed workflows`,
+        state: prompts > 0 ? "可用" : "不可用",
+        detail: `${prompts} 个受规则管理的工作流`,
       },
       {
         icon: "shield-check",
-        label: "Permission policy",
+        label: "权限策略",
         ready: agentLoaded && permissionSetting === false,
         state: !agentLoaded
-          ? "Unavailable"
+          ? "不可用"
           : permissionSetting === false
-            ? "Manual prompts"
+            ? "手动确认"
             : permissionSetting === true
-              ? "Auto-allow on"
-              : "Unknown",
+              ? "已开启自动允许"
+              : "未知",
         detail:
           permissionSetting === false
-            ? "Client setting is off. This reports policy, not enforcement."
+            ? "客户端已关闭自动允许。这里只报告设置，不代表技术强制。"
             : permissionSetting === true
-              ? "Client may auto-approve requests. This reports policy, not enforcement."
-              : "Permission setting was not observable. No enforcement claim.",
+              ? "客户端可能自动批准请求。这里只报告设置，不代表技术强制。"
+              : "无法读取权限设置，因此不对强制执行情况作判断。",
       },
     ];
     const ready = checks.filter((check) => check.ready).length;
     const section = parent.createEl("section", { cls: "life-os-ai-live" });
     this.renderLiveHeading(
       section,
-      "AI control center",
-      "Capability status is local. Installed does not mean authenticated or connected.",
-      `${ready} of ${checks.length} available`
+      "AI 控制中心",
+      "这里只显示本地能力状态。已安装不代表已经登录或连接。",
+      `${checks.length} 项中有 ${ready} 项可用`
     );
     if (this.visualEnabled()) {
-      const flow = section.createEl("section", { cls: "life-os-connection-map", attr: { "aria-label": "AI integration map" } });
-      flow.createEl("h3", { text: "How the parts connect" });
+      const flow = section.createEl("section", { cls: "life-os-connection-map", attr: { "aria-label": "AI 集成关系图" } });
+      flow.createEl("h3", { text: "各部分如何连接" });
       const diagram = flow.createDiv({ cls: "life-os-ai-diagram" });
-      diagram.createDiv({ cls: "life-os-ai-node", text: "Life OS · local dashboard" });
-      diagram.createDiv({ cls: "life-os-ai-connector", text: "Selected context →" });
-      const hub = diagram.createDiv({ cls: "life-os-ai-node", text: `Agent Client · ${agentConfigured ? "configured" : agentLoaded ? "loaded, configuration needed" : "unavailable"}` });
-      hub.createDiv({ text: "Two separate integration paths ↓" });
+      diagram.createDiv({ cls: "life-os-ai-node", text: "Life OS · 本地仪表盘" });
+      diagram.createDiv({ cls: "life-os-ai-connector", text: "所选上下文 →" });
+      const hub = diagram.createDiv({ cls: "life-os-ai-node", text: `Agent Client · ${agentConfigured ? "已配置" : agentLoaded ? "已加载，需要配置" : "不可用"}` });
+      hub.createDiv({ text: "两条独立的集成路径 ↓" });
       const branches = diagram.createDiv({ cls: "life-os-ai-branches" });
-      branches.createDiv({ cls: "life-os-ai-node", text: "Provider · authentication not tested here" });
-      branches.createDiv({ cls: "life-os-ai-node", text: `Optional local tools via MCP · ${restConfigured ? "key present, connection not tested" : "not configured"}` });
-      flow.createEl("p", { text: "Integration overview, not a live traffic trace. This screen makes no provider requests. Review selected context and permissions before sending." });
+      branches.createDiv({ cls: "life-os-ai-node", text: "模型服务商 · 此处不测试身份验证" });
+      branches.createDiv({ cls: "life-os-ai-node", text: `通过 MCP 使用可选本地工具 · ${restConfigured ? "已有密钥，尚未测试连接" : "未配置"}` });
+      flow.createEl("p", { text: "这里显示集成概览，并非实时流量记录。本页面不会请求模型服务商。发送前请检查所选上下文和权限。" });
     }
     const grid = section.createDiv({ cls: "life-os-ai-check-grid" });
     for (const check of checks) {
@@ -1579,7 +1579,7 @@ class LifeOSHomeView extends ItemView {
       .getMarkdownFiles()
       .filter((file) => this.isDomainRecord(file))
       .filter((file) => this.activeScreen === "library" ? Boolean(this.getFrontmatter(file).type) : options.types.includes(String(this.getFrontmatter(file).type || "")))
-      .filter((file) => this.activeScreen !== "library" || (file.path.startsWith("07 Library/") && !this.isExample(this.getFrontmatter(file))))
+      .filter((file) => this.activeScreen !== "library" || (file.path.startsWith("07 资料库/") && !this.isExample(this.getFrontmatter(file))))
       .filter((file) => {
         const status = String(this.getFrontmatter(file).status || "").toLowerCase();
         return this.activeScreen === "library" || !["done", "complete", "completed", "archived"].includes(status);
@@ -1593,7 +1593,7 @@ class LifeOSHomeView extends ItemView {
       section,
       options.title,
       options.description,
-      `${records.length} ${records.length === 1 ? "note" : "notes"}`
+      `${records.length} 篇笔记`
     );
     if (!records.length) {
       section.createDiv({ cls: "life-os-live-empty", text: options.empty });
@@ -1601,23 +1601,23 @@ class LifeOSHomeView extends ItemView {
     }
     let visible = records;
     if (this.activeScreen === "library") {
-      const typeLabel = section.createEl("label", { text: "Type " });
-      const typeSelect = typeLabel.createEl("select", { attr: { "aria-label": "Library type" } });
+      const typeLabel = section.createEl("label", { text: "类型 " });
+      const typeSelect = typeLabel.createEl("select", { attr: { "aria-label": "资料库类型" } });
       const types = [...new Set(records.map(file => String(this.getFrontmatter(file).type)))].sort();
       if (!types.includes(this.libraryType)) this.libraryType = "all";
-      for (const type of ["all", ...types]) typeSelect.createEl("option", { text: type === "all" ? "All types" : type, attr: { value: type } });
+      for (const type of ["all", ...types]) typeSelect.createEl("option", { text: type === "all" ? "全部类型" : type, attr: { value: type } });
       typeSelect.value = this.libraryType;
       this.registerDomEvent(typeSelect, "change", () => { this.libraryType = typeSelect.value; this.render(); });
-      const label = section.createEl("label", { text: "Library status " });
-      const select = label.createEl("select", { attr: { "aria-label": "Library status" } });
+      const label = section.createEl("label", { text: "资料库状态 " });
+      const select = label.createEl("select", { attr: { "aria-label": "资料库状态" } });
       const statuses = [...new Set(records.map(file => String(this.getFrontmatter(file).status || "Not set")))].sort();
-      for (const value of ["all", ...statuses]) select.createEl("option", { text: value === "all" ? "All statuses" : value, attr: { value } });
+      for (const value of ["all", ...statuses]) select.createEl("option", { text: value === "all" ? "全部状态" : value, attr: { value } });
       if (!statuses.includes(this.libraryStatus)) this.libraryStatus = "all";
       select.value = this.libraryStatus;
       this.registerDomEvent(select, "change", () => { this.libraryStatus = select.value; this.render(); });
       visible = records.filter(file => (this.libraryStatus === "all" || String(this.getFrontmatter(file).status || "Not set") === this.libraryStatus) && (this.libraryType === "all" || String(this.getFrontmatter(file).type) === this.libraryType));
     }
-    section.createEl("p", { text: `Showing ${Math.min(visible.length, this.itemLimit)} of ${visible.length} matching notes.` });
+    section.createEl("p", { text: `显示 ${visible.length} 篇匹配笔记中的 ${Math.min(visible.length, this.itemLimit)} 篇。` });
     const grid = section.createDiv({ cls: "life-os-record-grid" });
     for (const file of visible.slice(0, this.itemLimit)) {
       const data = this.getFrontmatter(file);
@@ -1628,16 +1628,16 @@ class LifeOSHomeView extends ItemView {
         const cover = String(data.cover || "").replace(/^!?\[\[/, "").replace(/\]\]$/, "").split("|")[0];
         const imageFile = !/^(?:[a-z]+:|\/)/i.test(cover) && /\.(?:png|jpe?g|webp|gif)$/i.test(cover) ? this.app.metadataCache.getFirstLinkpathDest?.(cover, file.path) : null;
         if (imageFile instanceof TFile && this.app.vault.getResourcePath) button.createEl("img", { cls: "life-os-book-cover", attr: { src: this.app.vault.getResourcePath(imageFile), alt: "", loading: "lazy" } });
-        else button.createDiv({ cls: "life-os-book-cover life-os-book-fallback", text: String(data.type || "Note").toUpperCase() });
+        else button.createDiv({ cls: "life-os-book-cover life-os-book-fallback", text: String(data.type || "笔记").toUpperCase() });
       }
       const icon = button.createSpan({ cls: "life-os-record-icon" });
       setIcon(icon, options.icon);
       const copy = button.createDiv();
       copy.createEl("strong", { text: this.getFileTitle(file) });
-      copy.createSpan({ text: String(data.status || "Status not set") });
+      copy.createSpan({ text: String(data.status || "未设置状态") });
       if (this.visualEnabled() && ["projects", "people"].includes(this.activeScreen)) {
         const tasks = this.tasksForRecord(file, this.activeScreen === "projects" ? "project" : "p");
-        copy.createSpan({ cls: "life-os-record-metrics", attr: { title: "Counts use explicit routing tags, not inferred ownership." }, text: !this.taskSnapshot || this.taskSnapshot.error ? "Task index unavailable" : `${tasks.length} tagged open · ${tasks.filter(task => task.overdue).length} overdue${this.taskSnapshot.state === "partial" ? " · partial index" : ""}` });
+        copy.createSpan({ cls: "life-os-record-metrics", attr: { title: "统计使用明确的路由标签，不推断归属。" }, text: !this.taskSnapshot || this.taskSnapshot.error ? "任务索引不可用" : `${tasks.length} 项带标签的未完成任务 · ${tasks.filter(task => task.overdue).length} 项逾期${this.taskSnapshot.state === "partial" ? " · 部分索引" : ""}` });
       }
       const arrow = button.createSpan({ cls: "life-os-record-arrow" });
       setIcon(arrow, "arrow-up-right");
@@ -1645,9 +1645,9 @@ class LifeOSHomeView extends ItemView {
     }
     if (this.visualEnabled() && this.activeScreen === "people") {
       const discussion = section.createDiv({ cls: "life-os-discussion-queue" });
-      discussion.createEl("h3", { text: "Open conversations" });
+      discussion.createEl("h3", { text: "待处理对话" });
       const entries = visible.flatMap(file => this.tasksForRecord(file, "p").filter(task => task.discuss).map(task => ({ file, task })));
-      discussion.createEl("p", { text: this.taskSnapshot && !this.taskSnapshot.error ? `${entries.length} indexed person-discussion links${this.taskSnapshot.state === "partial" ? " · partial index" : ""}. Explicit person tags only.` : "Task index unavailable." });
+      discussion.createEl("p", { text: this.taskSnapshot && !this.taskSnapshot.error ? `${entries.length} 条已索引的人物讨论关联${this.taskSnapshot.state === "partial" ? " · 部分索引" : ""}。只统计明确的人物标签。` : "任务索引不可用。" });
       for (const {file, task} of entries.slice(0, this.itemLimit)) {
         const button = discussion.createEl("button", { text: `${this.getFileTitle(file)} · ${task.text}` });
         button.type = "button";
@@ -1657,7 +1657,7 @@ class LifeOSHomeView extends ItemView {
   }
 
   tasksForRecord(file, prefix) {
-    const slug = this.getFileTitle(file).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const slug = this.getFileTitle(file).normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
     const tag = `#${prefix}/${slug}`;
     return (this.taskSnapshot?.tasks || []).filter(task => task.text.split(/\s+/).includes(tag));
   }
@@ -1678,7 +1678,7 @@ class LifeOSHomeView extends ItemView {
 
   getConfigFrontmatter() {
     return this.getFrontmatter(
-      this.app.vault.getAbstractFileByPath("Meta/Compass Config.md")
+      this.app.vault.getAbstractFileByPath("系统/Compass 配置.md")
     );
   }
 
@@ -1729,7 +1729,7 @@ class LifeOSHomeView extends ItemView {
 
   isDomainRecord(file) {
     const projects = `${this.getConfiguredFolders().projects}/`;
-    return [projects, "05 People/", "06 Writing/", "07 Library/"]
+    return [projects, "05 人物/", "06 写作/", "07 资料库/"]
       .some((folder) => file.path.startsWith(folder)) &&
       (this.includeExamples || !this.isExample(this.getFrontmatter(file)));
   }
@@ -1782,10 +1782,10 @@ class LifeOSHomeView extends ItemView {
   async loadTaskSnapshot() {
     const paths = this.getConfiguredFolders();
     const sources = [
-      "08 Tasks/Tasks.md",
+      "08 任务/任务总表.md",
       `${paths.projects}/`,
-      "05 People/",
-      "06 Writing/",
+      "05 人物/",
+      "06 写作/",
     ];
     const files = this.app.vault
       .getMarkdownFiles()
@@ -1808,7 +1808,7 @@ class LifeOSHomeView extends ItemView {
               file,
               content: "",
               listItems: [],
-              error: "Metadata unavailable",
+              error: "元数据不可用",
               errorType: "metadata",
             };
           }
@@ -1825,7 +1825,7 @@ class LifeOSHomeView extends ItemView {
               file,
               content: "",
               listItems: [],
-              error: error?.message || "Unreadable file",
+              error: error?.message || "文件无法读取",
               errorType: "read",
             };
           }
@@ -1905,7 +1905,7 @@ class LifeOSHomeView extends ItemView {
     } catch (error) {
       return {
         tasks: [],
-        error: error?.message || "Task index unavailable",
+        error: error?.message || "任务索引不可用",
         state: "unavailable",
         skipped: files.length,
         missingMetadata: 0,
@@ -1927,21 +1927,21 @@ class LifeOSHomeView extends ItemView {
 
   renderFocusGroups(parent) {
     const section = parent.createDiv({ cls: "life-os-focus-groups" });
-    section.createEl("h2", { text: "Where your attention goes" });
-    section.createEl("p", { text: "One group per indexed open task. Past scheduled dates without a current due date fall under Other. Partial indexing may omit tasks." });
-    for (const [id, label] of [["all", "All"], ["overdue", "Overdue"], ["today", "Today"], ["upcoming", "Upcoming"], ["unscheduled", "Unscheduled / other"]]) {
+    section.createEl("h2", { text: "注意力分布" });
+    section.createEl("p", { text: "每个已索引未完成任务只进入一个分组。计划日期已过且没有当前截止日期的任务归入“其他”。部分索引可能遗漏任务。" });
+    for (const [id, label] of [["all", "全部"], ["overdue", "逾期"], ["today", "今天"], ["upcoming", "即将到期"], ["unscheduled", "未安排或其他"]]) {
       const count = this.taskSnapshot?.tasks.filter(task => id === "all" || this.taskGroup(task) === id).length;
-      const button = section.createEl("button", { text: `${label} · ${count ?? "Loading"}`, attr: { "aria-pressed": String(this.focusGroup === id) } });
+      const button = section.createEl("button", { text: `${label} · ${count ?? "加载中"}`, attr: { "aria-pressed": String(this.focusGroup === id) } });
       button.type = "button";
       this.registerDomEvent(button, "click", () => { this.focusGroup = id; this.render(); });
     }
     const total = this.taskSnapshot?.tasks.length || 0;
     if (total) {
-      const bar = section.createDiv({ cls: "life-os-workload-bar", attr: { "aria-label": "Distribution of indexed open tasks" } });
-      for (const [id, label] of [["overdue", "Overdue"], ["today", "Today"], ["upcoming", "Upcoming"], ["unscheduled", "Unscheduled / other"]]) {
+      const bar = section.createDiv({ cls: "life-os-workload-bar", attr: { "aria-label": "已索引未完成任务分布" } });
+      for (const [id, label] of [["overdue", "逾期"], ["today", "今天"], ["upcoming", "即将到期"], ["unscheduled", "未安排或其他"]]) {
         const count = this.taskSnapshot.tasks.filter(task => this.taskGroup(task) === id).length;
         if (!count) continue;
-        const segment = bar.createEl("button", { cls: `life-os-workload-segment is-${id}`, attr: { style: `flex:${count}`, "aria-label": `${label}: ${count} of ${total}`, title: `${label}: ${count} of ${total}` } });
+        const segment = bar.createEl("button", { cls: `life-os-workload-segment is-${id}`, attr: { style: `flex:${count}`, "aria-label": `${label}：${total} 项中的 ${count} 项`, title: `${label}：${total} 项中的 ${count} 项` } });
         segment.type = "button";
         this.registerDomEvent(segment, "click", () => { this.focusGroup = id; this.render(); });
       }
@@ -1953,32 +1953,32 @@ class LifeOSHomeView extends ItemView {
     const section = parent.createEl("section", { cls: "life-os-task-live" });
     const coverage = snapshot
       ? [
-          `${snapshot.tasks.length} open`,
+          `${snapshot.tasks.length} 项未完成`,
           snapshot.skipped - snapshot.missingMetadata > 0
-            ? `${snapshot.skipped - snapshot.missingMetadata} unreadable`
+            ? `${snapshot.skipped - snapshot.missingMetadata} 项无法读取`
             : "",
           snapshot.missingMetadata
-            ? `${snapshot.missingMetadata} metadata pending`
+            ? `${snapshot.missingMetadata} 项等待元数据`
             : "",
           snapshot.unresolvedStatuses
-            ? `${snapshot.unresolvedStatuses} unresolved status`
+            ? `${snapshot.unresolvedStatuses} 项状态无法识别`
             : "",
           snapshot.examplesExcluded
-            ? `${snapshot.examplesExcluded} sample excluded`
+            ? `${snapshot.examplesExcluded} 项示例已排除`
             : "",
         ]
           .filter(Boolean)
           .join(", ")
-      : "Loading";
+      : "加载中";
     this.renderLiveHeading(
       section,
-      attention ? "Needs attention" : "Commitment feed",
-      attention ? "Overdue, due today, scheduled today, or high priority. Open a task at its source." : "Open tasks from the master inbox, projects, people, and writing notes.",
+      attention ? "需要关注" : "承诺事项",
+      attention ? "逾期、今天到期、今天安排或高优先级任务。点击任务可打开来源。" : "显示来自任务总表、项目、人物和写作笔记的未完成任务。",
       coverage
     );
 
     if (!snapshot) {
-      section.createDiv({ cls: "life-os-live-empty", text: "Loading local tasks..." });
+      section.createDiv({ cls: "life-os-live-empty", text: "正在加载本地任务……" });
       return;
     }
     if (snapshot.error) {
@@ -1990,14 +1990,14 @@ class LifeOSHomeView extends ItemView {
         cls: "life-os-live-empty",
         text:
           snapshot.state === "partial"
-            ? "No open tasks indexed. Some task data could not be classified."
-            : "No open tasks found.",
+            ? "没有已索引的未完成任务，部分任务数据无法分类。"
+            : "没有找到未完成任务。",
       });
       return;
     }
 
     const selected = attention ? snapshot.tasks.filter(task => task.overdue || task.dueToday || task.scheduledToday || task.high) : snapshot.tasks.filter(task => group === "all" || this.taskGroup(task) === group);
-    if (!selected.length) section.createDiv({ cls: "life-os-live-empty", text: attention ? "Nothing urgent in the indexed tasks. Other open tasks remain available below." : "No indexed tasks in this group." });
+    if (!selected.length) section.createDiv({ cls: "life-os-live-empty", text: attention ? "已索引任务中没有紧急事项，其他未完成任务仍显示在下方。" : "此分组没有已索引任务。" });
     const list = section.createDiv({ cls: "life-os-task-list" });
     for (const task of selected.slice(0, limit)) {
       const button = list.createEl("button", {
@@ -2014,28 +2014,28 @@ class LifeOSHomeView extends ItemView {
       copy.createEl("strong", { text: task.text });
       copy.createSpan({ text: this.getTaskContext(task) });
       if (task.high) {
-        button.createSpan({ cls: "life-os-task-priority", text: "High" });
+        button.createSpan({ cls: "life-os-task-priority", text: "高优先级" });
       }
       this.registerDomEvent(button, "click", () => void this.openPath(task.path, task.line));
     }
-    this.addButton(section, { icon: "list-checks", label: "All tasks", description: !selected.length ? `View all ${snapshot.tasks.length} indexed open tasks.` : `Showing ${Math.min(selected.length, limit)} of ${selected.length} matching tasks.`, onClick: () => this.openPath("00 Dashboards/Task Dashboard.md") });
+    this.addButton(section, { icon: "list-checks", label: "全部任务", description: !selected.length ? `查看全部 ${snapshot.tasks.length} 项已索引未完成任务。` : `显示 ${selected.length} 项匹配任务中的 ${Math.min(selected.length, limit)} 项。`, onClick: () => this.openPath("00 仪表盘/任务仪表盘.md") });
   }
 
   getTaskContext(task) {
     if (task.overdue) {
-      return `Overdue · ${task.due}`;
+      return `逾期 · ${task.due}`;
     }
     if (task.dueToday) {
-      return "Due today";
+      return "今天到期";
     }
     if (task.scheduledToday) {
-      return "Scheduled today";
+      return "今天安排";
     }
     if (task.due) {
-      return `Due ${task.due}`;
+      return `到期 ${task.due}`;
     }
     if (task.scheduled) {
-      return `Scheduled ${task.scheduled}`;
+      return `计划 ${task.scheduled}`;
     }
     return this.getFileTitle({ path: task.path });
   }
@@ -2043,7 +2043,7 @@ class LifeOSHomeView extends ItemView {
   renderSystemSummary(parent) {
     const stats = this.getSystemStats();
     const section = parent.createEl("section", { cls: "life-os-summary" });
-    section.createEl("h2", { text: "Live system" });
+    section.createEl("h2", { text: "实时系统" });
     const grid = section.createDiv({ cls: "life-os-stat-grid" });
 
     for (const stat of stats) {
@@ -2057,7 +2057,7 @@ class LifeOSHomeView extends ItemView {
   }
 
   renderSetupBanner(parent) {
-    const setupPath = "00 Dashboards/Setup.md";
+    const setupPath = "00 仪表盘/初始设置.md";
     const setupFile = this.app.vault.getAbstractFileByPath(setupPath);
     const status = String(this.getFrontmatter(setupFile).status || "open").toLowerCase();
     if (status === "done" || status === "complete" || status === "completed") {
@@ -2068,14 +2068,14 @@ class LifeOSHomeView extends ItemView {
     const icon = banner.createSpan({ cls: "life-os-setup-icon" });
     setIcon(icon, "route");
     const copy = banner.createDiv();
-    copy.createEl("strong", { text: "Finish your Life OS setup" });
+    copy.createEl("strong", { text: "完成 Life OS 初始设置" });
     copy.createEl("p", {
-      text: "Complete the guided checklist before depending on automations or AI connections.",
+      text: "在依赖自动化或 AI 连接前，请先完成引导清单。",
     });
     this.addButton(banner, {
       icon: "arrow-right",
-      label: "Continue setup",
-      description: "Review the checklist.",
+      label: "继续设置",
+      description: "查看设置清单。",
       onClick: () => this.openPath(setupPath),
     });
   }
@@ -2106,25 +2106,25 @@ class LifeOSHomeView extends ItemView {
     return [
       {
         icon: "calendar-check",
-        value: this.app.vault.getAbstractFileByPath(todayPath) ? "Ready" : "Not created",
-        label: "Today",
+        value: this.app.vault.getAbstractFileByPath(todayPath) ? "已就绪" : "尚未创建",
+        label: "今天",
       },
       {
         icon: "calendar-range",
-        value: this.app.vault.getAbstractFileByPath(weekPath) ? "Ready" : "Not created",
-        label: "This week",
+        value: this.app.vault.getAbstractFileByPath(weekPath) ? "已就绪" : "尚未创建",
+        label: "本周",
       },
-      { icon: "folder-kanban", value: activeProjects, label: "Active projects" },
-      { icon: "users", value: typeCount(["person"]), label: "People" },
+      { icon: "folder-kanban", value: activeProjects, label: "进行中的项目" },
+      { icon: "users", value: typeCount(["person"]), label: "人物" },
       {
         icon: "pen-tool",
         value: typeCount(["newsletter", "youtube-script", "article", "course-lesson"]),
-        label: "Creative notes",
+        label: "创作笔记",
       },
       {
         icon: "sparkles",
-        value: aiReady ? "Loaded" : "Unavailable",
-        label: "AI tools",
+        value: aiReady ? "已载入" : "不可用",
+        label: "AI 工具",
       },
     ];
   }
@@ -2196,13 +2196,13 @@ class LifeOSHomeView extends ItemView {
   }
 
   async openPath(path, line = null) {
-    if (path === `${DEFAULT_FOLDERS.projects}/Projects Board.md`) {
-      path = `${this.getConfiguredFolders().projects}/Projects Board.md`;
+    if (path === `${DEFAULT_FOLDERS.projects}/项目看板.md`) {
+      path = `${this.getConfiguredFolders().projects}/项目看板.md`;
     }
     const file = this.app.vault.getAbstractFileByPath(path);
 
     if (!(file instanceof TFile)) {
-      new Notice(`Life OS could not find ${path}.`);
+      new Notice(`Life OS 找不到 ${path}。`);
       return;
     }
 
@@ -2227,7 +2227,7 @@ class LifeOSHomeView extends ItemView {
 }
 
 // Original Canvas renderer inspired by SEO OS's brain-shaped knowledge map.
-// Positions are decorative; every displayed edge comes from resolved vault links.
+// Positions are decorative; every displayed edge comes from resolved vault 条链接.
 class LifeOSBrainRenderer extends Component {
   constructor(app, contentEl, compact = false) {
     super();
@@ -2248,37 +2248,37 @@ class LifeOSBrainRenderer extends Component {
     this.edges = [];
     this.projected = [];
     this.regions = [
-      { id: "direction", name: "Direction & projects", color: "#ff906b" },
-      { id: "memory", name: "Journal & reflection", color: "#c095e8" },
-      { id: "people", name: "People", color: "#e5b96a" },
-      { id: "knowledge", name: "Knowledge & ideas", color: "#6fbdd8" },
-      { id: "practice", name: "Tasks & systems", color: "#82c3a5" },
+      { id: "direction", name: "方向与项目", color: "#ff906b" },
+      { id: "memory", name: "日记与反思", color: "#c095e8" },
+      { id: "people", name: "人物", color: "#e5b96a" },
+      { id: "knowledge", name: "知识与想法", color: "#6fbdd8" },
+      { id: "practice", name: "任务与系统", color: "#82c3a5" },
     ];
   }
   getViewType() { return "life-os-brain"; }
-  getDisplayText() { return "Life OS Brain"; }
+  getDisplayText() { return "Life OS 知识图谱"; }
   getIcon() { return "brain"; }
   async onOpen() {
     const root = this.contentEl;
     root.empty(); root.addClass("life-os-brain");
     const header = root.createDiv({ cls: "life-os-brain-header" });
     const title = header.createDiv();
-    title.createEl("h2", { text: "Your connected brain" });
-    this.summary = title.createEl("p", { text: "Reading vault links…", attr: { "aria-live": "polite" } });
+    title.createEl("h2", { text: "你的关联知识图谱" });
+    this.summary = title.createEl("p", { text: "正在读取 Vault 链接……", attr: { "aria-live": "polite" } });
     const controls = header.createDiv({ cls: "life-os-brain-controls" });
-    const search = controls.createEl("input", { attr: { type: "search", placeholder: "Find a note…", "aria-label": "Search brain notes" } });
+    const search = controls.createEl("input", { attr: { type: "search", placeholder: "查找笔记……", "aria-label": "搜索图谱笔记" } });
     this.registerDomEvent(search, "input", () => { this.query = search.value.toLowerCase(); this.update(); });
-    const reset = controls.createEl("button", { text: "Reset view" });
+    const reset = controls.createEl("button", { text: "重置视图" });
     this.registerDomEvent(reset, "click", () => { this.panX = 0; this.panY = 0; this.yaw = 0.28; this.pitch = -0.12; this.zoom = 1; this.clearHover(); });
-    const labels = controls.createEl("select", { attr: { "aria-label": "Note labels" } });
-    for (const [value, text] of [["auto", "Labels: Auto"], ["all", "Labels: All"], ["off", "Labels: Hover only"]]) labels.createEl("option", { text, attr: { value } });
+    const labels = controls.createEl("select", { attr: { "aria-label": "笔记标签" } });
+    for (const [value, text] of [["auto", "标签：自动"], ["all", "标签：全部"], ["off", "标签：仅悬停"]]) labels.createEl("option", { text, attr: { value } });
     this.registerDomEvent(labels, "change", () => { this.labelMode = labels.value; this.draw(); });
-    const standard = controls.createEl("button", { text: "Standard graph" });
+    const standard = controls.createEl("button", { text: "标准图谱" });
     this.registerDomEvent(standard, "click", () => {
-      if (!this.app.commands.executeCommandById("graph:open")) new Notice("Enable Obsidian's Graph view core plugin first.");
+      if (!this.app.commands.executeCommandById("graph:open")) new Notice("请先启用 Obsidian 的图谱核心插件。");
     });
-    this.filters = root.createDiv({ cls: "life-os-brain-filters", attr: { "aria-label": "Brain regions" } });
-    for (const region of [{ id: "all", name: "All regions", color: "#c4cecc" }, ...this.regions]) {
+    this.filters = root.createDiv({ cls: "life-os-brain-filters", attr: { "aria-label": "图谱区域" } });
+    for (const region of [{ id: "all", name: "全部区域", color: "#c4cecc" }, ...this.regions]) {
       const button = this.filters.createEl("button", { text: region.name, attr: { "aria-pressed": String(region.id === this.region), style: `--region-color:${region.color}` } });
       this.registerDomEvent(button, "click", () => {
         this.region = region.id;
@@ -2288,13 +2288,13 @@ class LifeOSBrainRenderer extends Component {
     }
     const body = root.createDiv({ cls: "life-os-brain-body" });
     this.stage = body.createDiv({ cls: "life-os-brain-stage" });
-    this.canvas = this.stage.createEl("canvas", { attr: { tabindex: "0", "aria-label": "3D brain graph. Drag to rotate, Shift-drag to pan, scroll to zoom. Arrow keys rotate. Browse notes in the adjacent list." } });
-    this.caption = this.stage.createDiv({ cls: "life-os-brain-caption", text: "Drag to rotate · Shift-drag to pan · Scroll to zoom" });
+    this.canvas = this.stage.createEl("canvas", { attr: { tabindex: "0", "aria-label": "三维知识图谱。拖动可旋转，按住 Shift 拖动可平移，滚动可缩放，方向键可旋转。可在旁边的列表中浏览笔记。" } });
+    this.caption = this.stage.createDiv({ cls: "life-os-brain-caption", text: "拖动旋转 · Shift 加拖动平移 · 滚动缩放" });
     this.tooltip = this.stage.createDiv({ cls: "life-os-brain-tooltip", attr: { role: "tooltip" } });
     this.tooltip.hidden = true;
-    this.panel = body.createEl("aside", { cls: "life-os-brain-panel", attr: { "aria-label": "Notes and connections" } });
+    this.panel = body.createEl("aside", { cls: "life-os-brain-panel", attr: { "aria-label": "笔记与连接" } });
     this.ctx = this.canvas.getContext("2d");
-    if (!this.ctx) this.caption.setText("Canvas is unavailable. Browse and open notes in the list.");
+    if (!this.ctx) this.caption.setText("画布不可用，请在列表中浏览并打开笔记。");
     let drag = null;
     this.registerDomEvent(this.canvas, "pointerdown", (event) => {
       this.clearHover();
@@ -2313,8 +2313,8 @@ class LifeOSBrainRenderer extends Component {
         if (hit) {
           this.tooltip.createEl("strong", { text: hit.node.title });
           this.tooltip.createDiv({ text: hit.node.path });
-          this.tooltip.createDiv({ text: `${this.regions.find((r) => r.id === hit.node.region).name} · ${hit.node.degree} connections${hit.node.sample ? " · Sample note" : ""}` });
-          this.tooltip.createDiv({ text: "Click to explore linked notes" });
+          this.tooltip.createDiv({ text: `${this.regions.find((r) => r.id === hit.node.region).name} · ${hit.node.degree} 个连接${hit.node.sample ? " · 示例笔记" : ""}` });
+          this.tooltip.createDiv({ text: "点击探索关联笔记" });
           this.tooltip.style.left = `${Math.max(8, Math.min(x + 16, rect.width - this.tooltip.offsetWidth - 8))}px`;
           this.tooltip.style.top = `${Math.max(8, Math.min(y + 16, rect.height - this.tooltip.offsetHeight - 8))}px`;
         }
@@ -2372,14 +2372,14 @@ class LifeOSBrainRenderer extends Component {
     this.refresh();
     if (this.compact) {
       this.canvas.setAttribute("tabindex", "-1");
-      this.canvas.setAttribute("aria-label", "Preview of connected notes. Use Explore Brain for interactive navigation.");
+      this.canvas.setAttribute("aria-label", "关联笔记预览。使用“探索知识图谱”进行交互浏览。");
     }
   }
   regionFor(path) {
-    if (/^(03 Planning|04 Projects)\//.test(path)) return "direction";
-    if (/^(01 Journal|02 Retreats)\//.test(path)) return "memory";
-    if (path.startsWith("05 People/")) return "people";
-    if (/^(06 Writing|07 Library|09 Reading|wiki|inbox)\//.test(path)) return "knowledge";
+    if (/^(03 规划|04 项目)\//.test(path)) return "direction";
+    if (/^(01 日志|02 季度回顾)\//.test(path)) return "memory";
+    if (path.startsWith("05 人物/")) return "people";
+    if (/^(06 写作|07 资料库|09 阅读|知识库|收件箱)\//.test(path)) return "knowledge";
     return "practice";
   }
   clearHover() {
@@ -2493,7 +2493,7 @@ class LifeOSBrainRenderer extends Component {
   }
   refresh() {
     const all = this.app.vault.getMarkdownFiles().filter((file) =>
-      !/^(build|Templates|scripts|Guide|Meta)\//i.test(file.path) && !file.path.startsWith("."));
+      !/^(build|模板|scripts|使用指南|Meta)\//i.test(file.path) && !file.path.startsWith("."));
     const files = all.sort((a, b) => a.path.localeCompare(b.path)).slice(0, this.compact ? 300 : 2000);
     this.total = all.length;
     this.nodes = files.map((file) => {
@@ -2522,7 +2522,7 @@ class LifeOSBrainRenderer extends Component {
   matches(node) { return (this.region === "all" || node.region === this.region) && node.path.toLowerCase().includes(this.query); }
   async openNote(node) {
     const file = this.app.vault.getAbstractFileByPath(node.path);
-    if (!(file instanceof TFile)) { new Notice("This note is no longer available."); return; }
+    if (!(file instanceof TFile)) { new Notice("这篇笔记已不存在。"); return; }
     const leaf = this.app.workspace.getLeaf("tab"); await leaf.openFile(file); await this.app.workspace.revealLeaf(leaf);
   }
   update() {
@@ -2532,29 +2532,29 @@ class LifeOSBrainRenderer extends Component {
     const visible = this.nodes.filter((node) => this.matches(node));
     const paths = new Set(visible.map((node) => node.path));
     const edgeCount = this.edges.filter(([a, b]) => paths.has(a) && paths.has(b)).length;
-    this.summary.setText(`${visible.length} notes · ${edgeCount} links · ${visible.filter((node) => node.sample).length} sample notes${this.total > this.nodes.length ? ` · showing ${this.nodes.length} of ${this.total}` : ""}`);
+    this.summary.setText(`${visible.length} 篇笔记 · ${edgeCount} 条链接 · ${visible.filter((node) => node.sample).length} 篇示例笔记${this.total > this.nodes.length ? ` · 显示 ${this.total} 篇中的 ${this.nodes.length} 篇` : ""}`);
     if (this.compact) { this.draw(); return; }
     this.panel.empty();
     const selected = this.nodes.find((node) => node.path === this.selected);
     if (selected) {
       this.panel.createEl("h3", { text: selected.title });
-      this.panel.createEl("p", { text: `${selected.path}${selected.sample ? " · Sample note" : ""}` });
-      const open = this.panel.createEl("button", { text: "Open note", cls: "life-os-brain-open" });
+      this.panel.createEl("p", { text: `${selected.path}${selected.sample ? " · 示例笔记" : ""}` });
+      const open = this.panel.createEl("button", { text: "打开笔记", cls: "life-os-brain-open" });
       open.addEventListener("click", () => void this.openNote(selected));
     }
     const connected = new Set(this.edges.flatMap(([a, b]) => a === this.selected ? [b] : b === this.selected ? [a] : []));
     const list = selected ? this.nodes.filter((node) => connected.has(node.path)) : visible;
-    this.panel.createEl("h3", { text: selected ? `Connected notes (${list.length})` : `Browse notes (${visible.length})` });
-    if (!list.length) this.panel.createEl("p", { text: selected ? "No linked notes yet. Add a wikilink in this note to connect it." : "No matching notes." });
+    this.panel.createEl("h3", { text: selected ? `关联笔记 (${list.length})` : `浏览笔记 (${visible.length})` });
+    if (!list.length) this.panel.createEl("p", { text: selected ? "还没有关联笔记，请在笔记中添加双向链接。" : "没有匹配的笔记。" });
     for (const node of [...list].sort((a, b) => b.degree - a.degree || a.path.localeCompare(b.path)).slice(0, 60)) {
       const button = this.panel.createEl("button", { cls: "life-os-brain-note", attr: { title: node.path } });
       button.createSpan({ text: node.title });
-      button.createEl("small", { text: `${node.degree} links${node.sample ? " · Sample" : ""}` });
+      button.createEl("small", { text: `${node.degree} 条链接${node.sample ? " · 示例" : ""}` });
       button.addEventListener("click", () => { this.selected = node.path; this.update(); });
     }
-    if (list.length > 60) this.panel.createEl("p", { text: "Showing the 60 most connected notes. Search to narrow the list." });
+    if (list.length > 60) this.panel.createEl("p", { text: "显示关联最多的 60 篇笔记，可通过搜索缩小范围。" });
     if (selected) {
-      const clear = this.panel.createEl("button", { text: "Clear selection" });
+      const clear = this.panel.createEl("button", { text: "清除选择" });
       clear.addEventListener("click", () => { this.selected = null; this.update(); });
     }
     this.draw();
@@ -2605,7 +2605,7 @@ class LifeOSBrainRenderer extends Component {
     }
     ctx.globalAlpha = 1;
     this.drawLabels(ctx, width, height, focus, connected);
-    this.caption.setText(edges.length > 10000 ? "10,000 links drawn. Select a note to isolate its connections." : "Drag to rotate · Shift-drag to pan · Scroll to zoom · Hover or click a note");
+    this.caption.setText(edges.length > 10000 ? "10,000 条链接已绘制。选择一篇笔记可单独查看它的连接。" : "拖动旋转 · Shift 加拖动平移 · 滚动缩放 · 悬停或点击笔记");
   }
   drawLabels(ctx, width, height, focus, connected) {
     const occupied = [];
@@ -2640,7 +2640,7 @@ class LifeOSBrainView extends ItemView {
     this.addChild(this.renderer);
   }
   getViewType() { return "life-os-brain"; }
-  getDisplayText() { return "Life OS Brain"; }
+  getDisplayText() { return "Life OS 知识图谱"; }
   getIcon() { return "brain"; }
   async onClose() { if (this.renderer) this.removeChild(this.renderer); this.renderer = null; }
 }
@@ -2653,32 +2653,32 @@ module.exports = class LifeOSPlugin extends Plugin {
       (leaf) => new LifeOSHomeView(leaf, this)
     );
 
-    this.addRibbonIcon("compass", "Open Life OS", () => {
+    this.addRibbonIcon("compass", "打开 Life OS", () => {
       void this.activateView();
     });
 
     this.addCommand({
       id: "open-home",
-      name: "Open Life OS home",
+      name: "打开 Life OS 主页",
       callback: () => this.activateView("home"),
     });
 
     this.addCommand({
       id: "open-capture",
-      name: "Open Life OS capture",
+      name: "打开 Life OS 快速记录",
       callback: () => this.openCapture(),
     });
 
     this.addCommand({
       id: "open-configuration",
-      name: "Open Life OS configuration",
-      callback: () => this.app.workspace.openLinkText("Meta/Compass Config", "", true),
+      name: "打开 Life OS 配置",
+      callback: () => this.app.workspace.openLinkText("系统/Compass 配置", "", true),
     });
 
     for (const item of NAV_ITEMS.filter((item) => item.id !== "home")) {
       this.addCommand({
         id: `open-${item.id}`,
-        name: `Open Life OS ${item.label}`,
+        name: `打开 Life OS ${item.label}`,
         callback: () => this.activateView(item.id),
       });
     }
@@ -2716,7 +2716,7 @@ module.exports = class LifeOSPlugin extends Plugin {
 
     if (!ran) {
       new Notice(
-        `${label} is unavailable. Check that its supporting plugin is enabled.`
+        `${label} 不可用，请检查支持它的插件是否已启用。`
       );
     }
 
